@@ -21,7 +21,7 @@ const Footer = () => <footer style={{marginTop:"25vh"}} className="page-footer f
     </div>
 
     <div className="footer-copyright bg-dark text-light text-center py-3">© 2020 Copyright @
-        <a> Francesco Mazzola & Alessio Ferrara</a>
+        <a href="/"> Francesco Mazzola & Alessio Ferrara</a>
         <i class="fa fa-android" aria-hidden="true"></i>
     </div>
 

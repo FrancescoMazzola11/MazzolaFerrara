@@ -1,37 +1,37 @@
 import { Navbar, Container, Nav, NavDropdown } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-// import authService from "../../services/authService"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import authService from "../../services/authService";
+// import { FontAwesomeIcon } from "../../../node_modules/@fortawesome/";
 import { useNavigate } from "react-router";
 import { useHttpClient } from "../../util/http-hook";
 import Swal from "sweetalert2";
 
 const NavBar = () => {
   const { sendRequest, isLoading } = useHttpClient();
-  // const user = authService.getCurrentRuolo();
-  // const name = authService.getCurrentUsername();
+   const user = authService.getCurrentRuolo();
+   const name = authService.getCurrentUsername();
   const [nOrdersUnpaid, setnOrdersUnpaid] = useState();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    const getOrdini = async () => {
-      if (user) {
-        try {
-          const response = await sendRequest(
-            process.env.REACT_APP_JAVA_BASE_URL +
-              "/order/unpaidOrders/" +
-              authService.getCurrentId(),
-            "GET",
-            null
-          );
-          setnOrdersUnpaid(response.length);
-        } catch (error) {
-          console.log(error);
-        }
-      }
-    };
-    getOrdini();
-  }, [sendRequest]);
+  // useEffect(() => {
+  //   const getOrdini = async () => {
+  //     if (user) {
+  //       try {
+  //         const response = await sendRequest(
+  //           process.env.REACT_APP_JAVA_BASE_URL +
+  //             "/order/unpaidOrders/" +
+  //             authService.getCurrentId(),
+  //           "GET",
+  //           null
+  //         );
+  //         setnOrdersUnpaid(response.length);
+  //       } catch (error) {
+  //         console.log(error);
+  //       }
+  //     }
+  //   };
+  //   getOrdini();
+  // }, [sendRequest]);
 
 
   return (

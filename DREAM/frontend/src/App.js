@@ -12,8 +12,8 @@ import {
   Redirect,
 } from "react-router-dom";
 import React from "react";
-import authService from "./services/authService";
-  const user = authService.getCurrentRuolo();
+import authService from "./services/authService"
+const user = authService.getCurrentRuolo();
 
 function App() {
   let routes;
