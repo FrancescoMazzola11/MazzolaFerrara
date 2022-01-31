@@ -13,11 +13,11 @@ import {
 } from "react-router-dom";
 import React from "react";
 import authService from "./services/authService"
-const user = authService.getCurrentRuolo();
+const user = authService.getCurrentEmail();
 
 function App() {
   let routes;
-  const user = authService.getCurrentRuolo();
+  const user = authService.getCurrentEmail();
 
 
   if (user) {
