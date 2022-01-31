@@ -10,14 +10,11 @@ import {
 } from "react-router-dom";
 import React from "react";
 import authService from "./services/authService"
-
-import NavBar from "./shared/components/NavBar";
-import Footer from "./shared/components/Footer";
-import LandingPage from "./homepage/pages/LandingPage";
-
+const user = authService.getCurrentEmail();
 
 function App() {
-  const user = authService.getCurrentRuolo();
+  let routes;
+  const user = authService.getCurrentEmail();
 
   let routes;
 

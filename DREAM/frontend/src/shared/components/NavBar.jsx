@@ -8,9 +8,7 @@ import Swal from "sweetalert2";
 
 const NavBar = () => {
   const { sendRequest, isLoading } = useHttpClient();
-   const user = authService.getCurrentRuolo();
-   const name = authService.getCurrentUsername();
-  const [nOrdersUnpaid, setnOrdersUnpaid] = useState();
+   const user = authService.getCurrentEmail();
   const navigate = useNavigate();
 
   // useEffect(() => {
@@ -55,9 +53,6 @@ const NavBar = () => {
               {/* <FontAwesomeIcon className="fa-lg" icon={faHome} /> */}
               {"Homepage"}
             </Nav.Link>
-            {!isLoading && user === "User" && nOrdersUnpaid > 0 && (
-              <Nav.Link href="/unpaidorders">Unpaid Orders</Nav.Link>
-            )}
             {user === "Emp" && (
               <React.Fragment>
                 <Nav.Link href="/optionals">Optionals</Nav.Link>
@@ -74,7 +69,7 @@ const NavBar = () => {
                   style={{ marginLeft: 5 }}
                   href="/"
                 >
-                  Welcome back {name}
+                  Welcome back {user}
                 </Nav.Link>
                 <Nav.Link
                   className="right-align btn btn-dark rounded-pill text-light pl-3 pr-3"
