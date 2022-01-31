@@ -9,8 +9,8 @@ const LandingPage = () => {
 
   return (
     <React.Fragment>
-      <div>
-      <h3 className="mt-3">HAVE A LOOK TO OUR &nbsp;</h3>
+      <div className="container">
+      <h3 className="mt-3">Welcome</h3>
       </div>
       {/* <div className="jumbotron">
         <div className="container mt-2">

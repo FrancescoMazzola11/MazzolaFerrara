@@ -1,8 +1,5 @@
 import logo from './logo.svg';
 import './App.css';
-import NavBar from "./shared/components/NavBar";
-import Footer from "./shared/components/Footer";
-import LandingPage from "./homepage/pages/LandingPage";
 import "semantic-ui-css/semantic.min.css";
 import {
   BrowserRouter as Router,
@@ -13,20 +10,24 @@ import {
 } from "react-router-dom";
 import React from "react";
 import authService from "./services/authService"
-const user = authService.getCurrentRuolo();
+
+import NavBar from "./shared/components/NavBar";
+import Footer from "./shared/components/Footer";
+import LandingPage from "./homepage/pages/LandingPage";
+
 
 function App() {
-  let routes;
   const user = authService.getCurrentRuolo();
 
+  let routes;
 
   if (user) {
       routes = (
         <Routes>
           <Route path="/" element={<LandingPage />} />
           {/* <Route path="/packagedetails/:pkgID" element={<PackagePage />} />
-          <Route path="/liststeeringinitiatives" element={<SteeringInitiatives />} />
-          <Route path="/evaluatesteeringinitiative/:initativeID" element={<EvaluateSteering />} /> */}
+          <Route path="/confirmationpage" element={<ConfirmationPage />} />
+          <Route path="/unpaidorders" element={<UnpaidOrders />} /> */}
         </Routes>
       );
   } else {
@@ -34,8 +35,6 @@ function App() {
       <Routes>
         {/* <Route path="/login" element={<Login />} /> */}
         <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/loginpolicymaker" element={<LoginPolicyMaker />} />
-        <Route path="/packagedetails/:pkgID" element={<PackagePage />} /> */}
         <Route path="*" element={<LandingPage />} />
       </Routes>
     );
