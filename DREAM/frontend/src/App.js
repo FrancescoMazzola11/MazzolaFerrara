@@ -10,10 +10,18 @@ import {
 } from "react-router-dom";
 import React from "react";
 import authService from "./services/authService"
+import NavBar from "./shared/components/NavBar";
+import Footer from "./shared/components/Footer";
+import LandingPage from "./homepage/pages/LandingPage";
+import Demo from "./homepage/pages/Demo";
+import Login from "./auth/pages/Login"
+import LoginPolicyMaker from "./auth/pages/LoginAdministrator"
+import ListOfFarmers from "./policy/pages/FarmersList"
+import FarmerPage from "./policy/pages/FarmerPage"
+
 const user = authService.getCurrentEmail();
 
 function App() {
-  let routes;
   const user = authService.getCurrentEmail();
 
   let routes;
@@ -21,7 +29,10 @@ function App() {
   if (user) {
       routes = (
         <Routes>
-          <Route path="/" element={<LandingPage />} />
+          <Route path="/" element={<ListOfFarmers />} />
+          <Route path="/farmer:id" element={<FarmerPage />} />
+          <Route path="/demo" element={<Demo />} />
+
           {/* <Route path="/packagedetails/:pkgID" element={<PackagePage />} />
           <Route path="/confirmationpage" element={<ConfirmationPage />} />
           <Route path="/unpaidorders" element={<UnpaidOrders />} /> */}
@@ -30,7 +41,13 @@ function App() {
   } else {
     routes = (
       <Routes>
-        {/* <Route path="/login" element={<Login />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/loginpolicymaker" element={<LoginPolicyMaker />} />
+        <Route path="/listoffarmers" element={<ListOfFarmers />} />
+        <Route path="/farmer:id" element={<FarmerPage />} />
+
+        <Route path="/demo" element={<Demo />} />
+
         <Route path="/" element={<LandingPage />} />
         <Route path="*" element={<LandingPage />} />
       </Routes>

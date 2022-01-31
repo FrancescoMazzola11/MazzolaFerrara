@@ -36,24 +36,20 @@ const NavBar = () => {
     <Navbar bg="blue" expand="lg">
       <Container>
         {/* className=" bg-opacity-100 bg-light rounded-pill text-light" */}
-        <Navbar.Brand href="/">
-          <img
-            alt=""
-            width="35"
-            height="35"
-            src="/logo.jpeg"
-            className="d-inline-block align-end rounded-pill"
-          />
-          {"Telcom"}
+        <Navbar.Brand href="/"  style={{fontWeight:"bold"}}>
+        <Nav.Link href="/" className="text-success">
+              {/* <FontAwesomeIcon className="fa-lg" icon={faHome} /> */}
+              {"DREAMS"}
+            </Nav.Link>
         </Navbar.Brand>{" "}
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/">
               {/* <FontAwesomeIcon className="fa-lg" icon={faHome} /> */}
-              {"Homepage"}
+              {"Home"}
             </Nav.Link>
-            {user === "Emp" && (
+            {user && (
               <React.Fragment>
                 <Nav.Link href="/optionals">Optionals</Nav.Link>
                 <Nav.Link href="/salesReport">Sales Report</Nav.Link>
@@ -61,7 +57,7 @@ const NavBar = () => {
             )}
 
           </Nav>
-          <Nav>
+          {/* <Nav>
             {user ? (
               <React.Fragment>
                 <Nav.Link
@@ -91,7 +87,7 @@ const NavBar = () => {
                 &nbsp;Log-in / Sign-up &nbsp;
               </Nav.Link>
             )}
-          </Nav>
+          </Nav> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

@@ -1,35 +1,49 @@
 import React from "react";
 
- import Farmer from './Farmer'
+import Farmer from './Farmer'
+import { Form, Card, Button, Icon, Header } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
 const ListaFarmers = (props) => {
-    if (props.servizi.length === 0) {
+    if (props.farmers.length === 0) {
         return (
           <div className="mx-0 justify-content-center">
-            <div className="col-12">
-              <p
-                className="mt-3 text-danger"
-                style={{ fontSize: "30px", fontWeight:"bolder" }}
-              >
-                Il pacchetto selezionato non ha nessun servizio abilitato!
-              </p>
-            </div>
+            Nessun farmer presente in DREAMS
           </div>
         );
       } else {
         return (
           <React.Fragment>
             <div className=" my-2 mx-3">
-              <div className="row">
-              {props.servizi.map((servizio) => (
-                <ServizioItem
-                  key={servizio.serviceID}
-                  name={servizio.name}
-                  description={servizio.description}
-                  servizio={servizio}
-                  />
-              ))}
-            </div>
+            <table class="ui celled table">
+                    <thead>
+                        <tr><th class="ten wide">Farmer</th>
+                        <th class="three wide text-center"><Icon name="eye"/></th>
+                      </tr></thead>
+                      <tbody>
+                          {props.farmers.map((farmer) => (
+                            //avoid formatting using an object each but rather get the objects into a single table without using the FarmerObject
+                            // <Farmer
+                            //   key={farmer.id}
+                            //   name={farmer.mail}
+                            //   farmerid={farmer.id}
+                            //   />
+                                    <tr>
+                                      <td>{farmer.mail}</td>
+                                      <td className="text-center">
+                                      <Link
+                                          to={`/farmerpage/${farmer.id}`}
+                                          className=" btn btn-success text-decoration-none"
+                                          activeClassName="active"
+                                          style={{backgroundColor:"teal", color:"white"}}
+                                        >
+                                          View Farmer
+                                        </Link>
+                                        </td>
+                                    </tr>
+                         ))}
+                      </tbody>
+                    </table>
             </div>
 
             <br></br>
