@@ -2,7 +2,7 @@ const Sequelize = require('sequelize');
 
 
 //Connecting to db
-
+                        //Db name, name, password
 const db = new Sequelize("Dream", "dream", "Dream123", {
   host: "localhost",
   dialect: "mysql",

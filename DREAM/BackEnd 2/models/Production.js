@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const db = require("../config/database");
+const ProductionType = require('./ProductionType');
 
 const Production = db.define('Production', {
     productionID: {
@@ -69,6 +70,9 @@ const Production = db.define('Production', {
       },
     ]
   });
+
+  Production.belongsTo(ProductionType, { as: "prodType", foreignKey: "prodTypeID"});
+  ProductionType.hasMany(Production, { as: "Productions", foreignKey: "prodTypeID"});
 
 
   module.exports = Production;
