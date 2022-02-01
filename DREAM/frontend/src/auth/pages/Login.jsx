@@ -124,7 +124,7 @@ const Login = () => {
                   <Button
                     type="submit"
                     color="green"
-                    className="rounded-pill" 
+                    className="rounded-pill"
                     floated="right"
                     onClick={loginData.handleSubmit}
                   >
@@ -133,9 +133,9 @@ const Login = () => {
                   <Button
                     type="submit"
                     color="success"
-                    className="rounded-pill" 
+                    className="rounded-pill"
                     floated="right"
-                    onClick={loginData.handleSubmit}
+                    href="/demo"
                   >
                     SIGN-IN
                   </Button>
