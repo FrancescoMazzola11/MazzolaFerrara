@@ -16,7 +16,7 @@ const FarmerList = () => {
         const getFarmers = async () => {
           try {
             const response = await sendRequest(
-              process.env.REACT_APP_JAVA_BASE_URL + "/farmerslist",
+              process.env.REACT_APP_JAVA_BASE_URL + "/evaluate/getFarmers",
               "GET",
               null
             );

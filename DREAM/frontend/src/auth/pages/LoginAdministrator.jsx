@@ -10,7 +10,7 @@ import authService from "../../services/authService";
 import { useNavigate } from "react-router";
 
 const loginSchema = Yup.object().shape({
-  username: Yup.string().required(),
+  email: Yup.string().required(),
   password: Yup.string().required(),
 });
 
@@ -20,17 +20,17 @@ const LoginAdministrator = () => {
 
   const loginData = useFormik({
     initialValues: {
-      mail: "",
+      email: "",
       password: "",
     },
     validationSchema: loginSchema,
     onSubmit: async (values) => {
       try {
         const responseData = await sendRequest(
-          process.env.REACT_APP_JAVA_BASE_URL + "/auth/loginEmployee",
+          process.env.REACT_APP_JAVA_BASE_URL + "/login",
           "POST",
           JSON.stringify({
-            mail: values.mail,
+            email: values.email,
             password: values.password,
           }),
           {
@@ -68,12 +68,12 @@ const LoginAdministrator = () => {
                 <Form size="large">
                   <Form.Input
                     label="E-Mail:"
-                    id="mail"
-                    value={loginData.values.mail}
+                    id="email"
+                    value={loginData.values.email}
                     onChange={loginData.handleChange}
                     onBlur={loginData.handleBlur}
                     error={
-                      loginData.errors.mail && loginData.touched.mail
+                      loginData.errors.email && loginData.touched.email
                     }
                   />
                   <Form.Input
