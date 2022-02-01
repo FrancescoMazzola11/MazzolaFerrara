@@ -26,6 +26,7 @@ const login = async (req, res, next) => {
     token = jwt.sign({ id: existingPM.pmID, email: existingPM.mail }, "dream_secret_token");
 
     res.json({
+        id = existingPM.pmID,
         email,
         token
     })
