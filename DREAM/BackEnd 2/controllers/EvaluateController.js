@@ -45,7 +45,9 @@ const getFarmerInfo = async (req, res, next) => {
 
 const getSteering = async (req, res, next) => {
   try {
-    const steeringList = await SteeringInitative.findAll();
+    const steeringList = await SteeringInitative.findAll({
+        include: [{ as: "farmer", model: Farmer, attributes: ["mail"]}],
+    });
 
     res.json({
       steeringList,
