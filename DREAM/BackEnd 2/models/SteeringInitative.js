@@ -4,6 +4,7 @@ var moment = require("moment-timezone");
 const { report } = require("../routes/evaluate-routes");
 const Report = require("./Report");
 const ProductionType = require("./ProductionType");
+const Farmer = require("./Farmer");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -98,7 +99,9 @@ SteeringInitative.getInfo = async function (initativeID) {
         where: {
           initativeID,
         },
-        include: [{ as: "prodType", model: ProductionType, attributes: ["name"] }],
+        include: [
+          { as: "prodType", model: ProductionType, attributes: ["name"] },
+        ],
       });
     }
     return { si, report };
@@ -110,4 +113,6 @@ Report.belongsTo(SteeringInitative, {
   as: "steeringInitative",
   foreignKey: "initativeID",
 });
+SteeringInitative.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID"});
+Farmer.hasMany(SteeringInitative, { as: "SteeringInitatives", foreignKey: "farmerID"});
 module.exports = SteeringInitative;
