@@ -5,6 +5,7 @@ const { report } = require("../routes/evaluate-routes");
 const Report = require("./Report");
 const ProductionType = require("./ProductionType");
 const Farmer = require("./Farmer");
+const Location = require("./Location");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -92,7 +93,14 @@ SteeringInitative.getInfo = async function (initativeID) {
       where: {
         initativeID,
       },
-      include: [{ as: "farmer", model: Farmer, attributes: ["mail"]}],
+      include: [
+        {
+          as: "farmer",
+          model: Farmer,
+          attributes: ["mail"],
+          include: [{ as: "location", model: Location, attributes: ["name"] }],
+        },
+      ],
     });
     let report;
     if (moment(si.startingDate).add(3, "M").isSameOrBefore(moment())) {
@@ -114,6 +122,9 @@ Report.belongsTo(SteeringInitative, {
   as: "steeringInitative",
   foreignKey: "initativeID",
 });
-SteeringInitative.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID"});
-Farmer.hasMany(SteeringInitative, { as: "SteeringInitatives", foreignKey: "farmerID"});
+SteeringInitative.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID" });
+Farmer.hasMany(SteeringInitative, {
+  as: "SteeringInitatives",
+  foreignKey: "farmerID",
+});
 module.exports = SteeringInitative;
