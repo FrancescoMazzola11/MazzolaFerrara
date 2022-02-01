@@ -18,6 +18,8 @@ import Login from "./auth/pages/Login"
 import LoginPolicyMaker from "./auth/pages/LoginAdministrator"
 import ListOfFarmers from "./policy/pages/FarmersList"
 import FarmerPage from "./policy/pages/FarmerPage"
+import SteeringPage from "./policy/pages/SteeringPage"
+
 
 const user = authService.getCurrentEmail();
 
@@ -31,6 +33,8 @@ function App() {
         <Routes>
           <Route path="/" element={<ListOfFarmers />} />
           <Route path="/farmer:id" element={<FarmerPage />} />
+          <Route path="/steering:id" element={<SteeringPage />} />
+
           <Route path="/demo" element={<Demo />} />
 
           {/* <Route path="/packagedetails/:pkgID" element={<PackagePage />} />
@@ -45,6 +49,7 @@ function App() {
         <Route path="/loginpolicymaker" element={<LoginPolicyMaker />} />
         <Route path="/listoffarmers" element={<ListOfFarmers />} />
         <Route path="/farmer:id" element={<FarmerPage />} />
+        <Route path="/steering:id" element={<SteeringPage />} />
 
         <Route path="/demo" element={<Demo />} />
 
