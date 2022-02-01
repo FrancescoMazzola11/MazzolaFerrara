@@ -1,6 +1,9 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
-var moment = require('moment-timezone');
+var moment = require("moment-timezone");
+const { report } = require("../routes/evaluate-routes");
+const Report = require("./Report");
+const ProductionType = require("./ProductionType");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -41,7 +44,6 @@ const SteeringInitative = db.define(
     },
   },
   {
-
     tableName: "SteeringInitative",
     timestamps: false,
     indexes: [
@@ -65,19 +67,47 @@ const SteeringInitative = db.define(
   }
 );
 
-
-SteeringInitative.createSteering = async function(farmerID, agronomistName, pmID) {
+SteeringInitative.createSteering = async function (
+  farmerID,
+  agronomistName,
+  pmID
+) {
   try {
     const si = await SteeringInitative.create({
       farmerID,
       agronomistName,
       startingDate: moment().format(),
-      pmID
-    })
+      pmID,
+    });
     return si;
   } catch (error) {
-    return error;
+    throw error;
   }
-}
+};
 
+SteeringInitative.getInfo = async function (initativeID) {
+  try {
+    const si = await SteeringInitative.findOne({
+      where: {
+        initativeID,
+      },
+    });
+    let report;
+    if (moment(si.startingDate).add(3, "M").isSameOrBefore(moment())) {
+      report = await Report.findAll({
+        where: {
+          initativeID,
+        },
+        include: [{ as: "prodType", model: ProductionType, attributes: ["name"] }],
+      });
+    }
+    return { si, report };
+  } catch (error) {
+    throw error;
+  }
+};
+Report.belongsTo(SteeringInitative, {
+  as: "steeringInitative",
+  foreignKey: "initativeID",
+});
 module.exports = SteeringInitative;

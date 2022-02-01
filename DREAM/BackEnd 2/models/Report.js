@@ -1,63 +1,65 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Report', {
+const Sequelize = require("sequelize");
+const db = require("../config/database");
+const ProductionType = require("./ProductionType");
+const Report = db.define(
+  "Report",
+  {
     reportID: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     prodTypeID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'ProductionType',
-        key: 'prodTypeID'
-      }
+        model: "ProductionType",
+        key: "prodTypeID",
+      },
     },
     prodRateBefore: {
-      type: DataTypes.FLOAT,
-      allowNull: true
+      type: Sequelize.DataTypes.FLOAT,
+      allowNull: true,
     },
     prodRateAfter: {
-      type: DataTypes.FLOAT,
-      allowNull: true
+      type: Sequelize.DataTypes.FLOAT,
+      allowNull: true,
     },
     initativeID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       references: {
-        model: 'SteeringInitative',
-        key: 'initativeID'
-      }
-    }
-  }, {
-    sequelize,
-    tableName: 'Report',
+        model: "SteeringInitative",
+        key: "initativeID",
+      },
+    },
+  },
+  {
+    tableName: "Report",
     timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
-        fields: [
-          { name: "reportID" },
-        ]
+        fields: [{ name: "reportID" }],
       },
       {
         name: "Report_FK",
         using: "BTREE",
-        fields: [
-          { name: "prodTypeID" },
-        ]
+        fields: [{ name: "prodTypeID" }],
       },
       {
         name: "Report_FK_1",
         using: "BTREE",
-        fields: [
-          { name: "initativeID" },
-        ]
+        fields: [{ name: "initativeID" }],
       },
-    ]
-  });
-};
+    ],
+  }
+);
+
+Report.belongsTo(ProductionType, { as: "prodType", foreignKey: "prodTypeID" });
+ProductionType.hasMany(Report, { as: "Reports", foreignKey: "prodTypeID" });
+
+module.exports = Report;
