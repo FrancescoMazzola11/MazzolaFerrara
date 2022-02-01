@@ -2,8 +2,8 @@ import { Image}  from "react-bootstrap"
 import React from "react"
 
 
-const Footer = () => <footer style={{marginTop:"25vh"}} className="page-footer font-small blue pt-4">
-    <div className="container-fluid text-center text-md-left bg-dark text-light">
+const Footer = () => <footer style={{marginTop:"0"}} className="page-footer font-small blue pt-4">
+    <div className="container-fluid text-center text-md-left bg-light text-dark text-light">
         <div className="row mt-3 pt-3">
             <div className="col-md-6 mt-md-0 mt-3">
                 <h5 className="text-uppercase">What's DREAMS?</h5>
@@ -21,7 +21,7 @@ const Footer = () => <footer style={{marginTop:"25vh"}} className="page-footer f
         </div>
     </div>
 
-    <div className="footer-copyright bg-dark text-light text-center py-3">© 2022 Copyright @
+    <div className="footer-copyright bg-light text-dark text-center py-3">© 2022 Copyright @
         <a href="/" className="text-success"> Francesco Mazzola & Alessio Ferrara</a>
         <i class="fa fa-android" aria-hidden="true"></i>
     </div>

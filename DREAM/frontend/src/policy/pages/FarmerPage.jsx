@@ -91,7 +91,9 @@ const FarmerList = () => {
                         Production Types
                       </Label>{" "}
                       {farmer.farmerInfo.ProdTypeFarmers.map((prod) => (
-                        <p>{prod.prodType.name} ,</p>
+                        <Label className="mt-2" color="facebook">
+                          {prod.prodType.name}
+                      </Label>
                       ))}
                     </li>
                     {/* get list of production types of the farmer */}

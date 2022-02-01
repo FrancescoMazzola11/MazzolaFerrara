@@ -12,7 +12,8 @@ const Demo = () => {
       <div className="container">
       <div class="d-flex justify-content-center mt-3 pt-3">
         <h1 className="text-danger display-2">
-          This functionality doesn't concern the PolicyMaker so it was not handled.
+          This functionality doesn't concern the PolicyMaker so it was not handled &#128519;
+
         </h1>
       </div>
       <div class="d-flex justify-content-center mt-3 pt-3">

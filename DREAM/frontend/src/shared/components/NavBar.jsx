@@ -51,8 +51,8 @@ const NavBar = () => {
             </Nav.Link>
             {user && (
               <React.Fragment>
-                <Nav.Link href="/listoffarmers">Farmers</Nav.Link>
-                <Nav.Link href="/listofsteerings">Steering Initiatives  </Nav.Link>
+                <Nav.Link href="/">Farmers</Nav.Link>
+                <Nav.Link href="/steeringlist">Steering Initiatives  </Nav.Link>
               </React.Fragment>
             )}
 
