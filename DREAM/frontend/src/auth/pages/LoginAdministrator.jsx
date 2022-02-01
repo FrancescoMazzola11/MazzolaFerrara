@@ -27,7 +27,7 @@ const LoginAdministrator = () => {
     onSubmit: async (values) => {
       try {
         const responseData = await sendRequest(
-          process.env.REACT_APP_JAVA_BASE_URL + "/login",
+          process.env.REACT_APP_BASE_URL + "/login",
           "POST",
           JSON.stringify({
             email: values.email,

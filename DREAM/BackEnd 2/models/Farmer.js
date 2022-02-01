@@ -97,6 +97,9 @@ Farmer.getInfo = async function (farmerID) {
       where: {
         farmerID,
       },
+      include: [
+        {as: "prodType", model:ProductionType, attributes:["name"] }
+      ]
     });
     return { farmerInfo, farmerProductions };
   } catch (error) {
