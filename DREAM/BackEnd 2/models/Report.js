@@ -22,6 +22,14 @@ module.exports = function(sequelize, DataTypes) {
     prodRateAfter: {
       type: DataTypes.FLOAT,
       allowNull: true
+    },
+    initativeID: {
+      type: DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: 'SteeringInitative',
+        key: 'initativeID'
+      }
     }
   }, {
     sequelize,
@@ -41,6 +49,13 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "prodTypeID" },
+        ]
+      },
+      {
+        name: "Report_FK_1",
+        using: "BTREE",
+        fields: [
+          { name: "initativeID" },
         ]
       },
     ]

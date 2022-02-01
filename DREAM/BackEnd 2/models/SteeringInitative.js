@@ -35,14 +35,6 @@ module.exports = function(sequelize, DataTypes) {
         key: 'pmID'
       }
     },
-    reportID: {
-      type: DataTypes.INTEGER,
-      allowNull: true,
-      references: {
-        model: 'Report',
-        key: 'reportID'
-      }
-    }
   }, {
     sequelize,
     tableName: 'SteeringInitative',
@@ -61,13 +53,6 @@ module.exports = function(sequelize, DataTypes) {
         using: "BTREE",
         fields: [
           { name: "pmID" },
-        ]
-      },
-      {
-        name: "SteeringInitative_FK_1",
-        using: "BTREE",
-        fields: [
-          { name: "reportID" },
         ]
       },
       {
