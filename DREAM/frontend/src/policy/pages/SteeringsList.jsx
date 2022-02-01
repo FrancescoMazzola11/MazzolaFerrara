@@ -18,12 +18,12 @@ const SteeringsList = () => {
         const getInitiatives = async () => {
           try {
             const response = await sendRequest(
-              process.env.REACT_APP_BASE_URL + "/evaluate/getInitiatives",
+              process.env.REACT_APP_BASE_URL + "/evaluate/getSteering",
               "GET",
               null,
               {Authorization: "Bearer "+token }
             );
-            setInitiatives(response);
+            setInitiatives(response.steeringsList);
           } catch (error) {
             Swal.fire({
               icon: "error",

@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const ListaSteerings
  = (props) => {
-  if (props.farmers.length === 0) {
+  if (props.initiatives.length === 0) {
     return (
       <div className="mx-0 justify-content-center">
         No steering initiatives available
@@ -19,16 +19,18 @@ const ListaSteerings
           <table class="ui celled table">
             <thead>
               <tr>
-                <th class="ten wide">Steering initiative</th>
+                <th class="five wide">Starting Date</th>
+                <th class="five wide">Farmer</th>
                 <th class="three wide text-center">
                   <Icon name="eye" />
                 </th>
               </tr>
             </thead>
             <tbody>
-              {props.farmers.map((farmer) => (
+              {props.initiatives.map((initiative) => (
                 <tr>
-                  <td>{farmer.mail}</td>
+                  <td>{initiative.}</td>
+                  <td>{initiative.}</td>
                   <td className="text-center">
                     <Link
                       to={`/steering/${steering.id}`}
