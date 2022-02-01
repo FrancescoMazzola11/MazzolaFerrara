@@ -20,7 +20,7 @@ import ListOfFarmers from "./policy/pages/FarmersList"
 import FarmerPage from "./policy/pages/FarmerPage"
 import SteeringPage from "./policy/pages/SteeringPage"
 
-
+require ("dotenv").config()
 const user = authService.getCurrentEmail();
 
 function App() {
@@ -32,8 +32,8 @@ function App() {
       routes = (
         <Routes>
           <Route path="/" element={<ListOfFarmers />} />
-          <Route path="/farmer:id" element={<FarmerPage />} />
-          <Route path="/steering:id" element={<SteeringPage />} />
+          <Route path="/farmerpage/:id" element={<FarmerPage />} />
+          <Route path="/steering/:id" element={<SteeringPage />} />
 
           <Route path="/demo" element={<Demo />} />
 
@@ -48,8 +48,8 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/loginpolicymaker" element={<LoginPolicyMaker />} />
         <Route path="/listoffarmers" element={<ListOfFarmers />} />
-        <Route path="/farmer:id" element={<FarmerPage />} />
-        <Route path="/steering:id" element={<SteeringPage />} />
+        <Route path="/farmerpage/:id" element={<FarmerPage />} />
+        <Route path="/steering/:id" element={<SteeringPage />} />
 
         <Route path="/demo" element={<Demo />} />
 

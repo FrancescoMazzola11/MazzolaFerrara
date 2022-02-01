@@ -37,7 +37,7 @@ const SteeringPage = () => {
     const getFarmer = async () => {
       try {
         const response = await sendRequest(
-          process.env.REACT_APP_JAVA_BASE_URL + "/evaluate/steeringInfo/" + id,
+          process.env.REACT_APP_BASE_URL + "/evaluate/steeringInfo/" + id,
           "GET",
           null
         );
