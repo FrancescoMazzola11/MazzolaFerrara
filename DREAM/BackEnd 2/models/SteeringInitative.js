@@ -7,24 +7,24 @@ const SteeringInitative = db.define(
   {
     initativeID: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
     agronomistName: {
-      type: DataTypes.STRING(255),
+      type: Sequelize.DataTypes.STRING(255),
       allowNull: true,
     },
     grade: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
     },
     startingDate: {
-      type: DataTypes.DATEONLY,
+      type: Sequelize.DataTypes.DATEONLY,
       allowNull: true,
     },
     farmerID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: "Farmer",
@@ -32,7 +32,7 @@ const SteeringInitative = db.define(
       },
     },
     pmID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: "PolicyMaker",
@@ -41,7 +41,7 @@ const SteeringInitative = db.define(
     },
   },
   {
-    sequelize,
+
     tableName: "SteeringInitative",
     timestamps: false,
     indexes: [

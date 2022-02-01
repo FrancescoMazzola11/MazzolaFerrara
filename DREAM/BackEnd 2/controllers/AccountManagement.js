@@ -1,5 +1,5 @@
 const HttpError = require("../models/http-error");
-const bcrypt = require("bcryptjs");
+const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const PolicyMaker = require("../models/PolicyMaker");
 
@@ -26,7 +26,8 @@ const login = async (req, res, next) => {
     token = jwt.sign({ id: existingPM.pmID, email: existingPM.mail }, "dream_secret_token");
 
     res.json({
-        email
+        email,
+        token
     })
   } catch (err) {
     return next(

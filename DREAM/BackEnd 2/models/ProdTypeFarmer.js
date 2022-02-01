@@ -1,8 +1,9 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('ProdTypeFarmer', {
+const db = require("../config/database");
+const ProductionType = require('./ProductionType');
+const ProdTypeFarmer = db.define('ProdTypeFarmer', {
     prodTypeID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
@@ -11,7 +12,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     farmerID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       references: {
@@ -20,7 +21,6 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    sequelize,
     tableName: 'ProdTypeFarmer',
     timestamps: false,
     indexes: [
@@ -42,4 +42,8 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-};
+  ProdTypeFarmer.belongsTo(ProductionType, { as: "prodType", foreignKey: "prodTypeID"});
+  ProductionType.hasMany(ProdTypeFarmer, { as: "ProdTypeFarmers", foreignKey: "prodTypeID"});
+
+
+  module.exports = ProdTypeFarmer;

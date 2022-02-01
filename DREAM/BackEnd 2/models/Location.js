@@ -1,29 +1,31 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Location', {
+const Sequelize = require("sequelize");
+const db = require("../config/database");
+const Location = db.define(
+  "Location",
+  {
     locationID: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
-      primaryKey: true
+      primaryKey: true,
     },
     name: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    }
-  }, {
-    sequelize,
-    tableName: 'Location',
+      type: Sequelize.DataTypes.STRING(255),
+      allowNull: true,
+    },
+  },
+  {
+    tableName: "Location",
     timestamps: false,
     indexes: [
       {
         name: "PRIMARY",
         unique: true,
         using: "BTREE",
-        fields: [
-          { name: "locationID" },
-        ]
+        fields: [{ name: "locationID" }],
       },
-    ]
-  });
-};
+    ],
+  }
+);
+
+module.exports = Location;

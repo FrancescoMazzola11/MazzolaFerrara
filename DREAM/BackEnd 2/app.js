@@ -4,8 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const evaluateRouter = require("./routes/evaluate-routes")
+const accountRouter = require("./routes/accountManagement-routes")
+const steeringRouter = require("./routes/steering-routes");
+const bodyParser = require('body-parser');
 
 const app = express();
 app.listen(5000);
@@ -20,8 +22,21 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+
+  next();
+});
+
+app.use('/login', accountRouter);
+app.use("/evaluate/", evaluateRouter);
+app.use("/steering/", steeringRouter);
 
 app.use(bodyParser.json());
 app.use(
@@ -29,6 +44,8 @@ app.use(
     extended: true,
   })
 );
+
+
 
 
 // catch 404 and forward to error handler

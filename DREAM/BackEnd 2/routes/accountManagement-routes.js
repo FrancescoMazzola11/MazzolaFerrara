@@ -4,6 +4,6 @@ const accountManagement = require("../controllers/AccountManagement")
 
 const router = express.Router();
 
-router.post("/accedi", accountManagement.login);
+router.post("/", accountManagement.login);
 
 module.exports = router;

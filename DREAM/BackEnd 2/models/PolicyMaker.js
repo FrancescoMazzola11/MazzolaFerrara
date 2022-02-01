@@ -6,21 +6,20 @@ const PolicyMaker = db.define(
   {
     pmID: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
     },
     mail: {
-      type: DataTypes.STRING(255),
+      type: Sequelize.DataTypes.STRING(255),
       allowNull: true,
     },
     password: {
-      type: DataTypes.STRING(255),
+      type: Sequelize.DataTypes.STRING(255),
       allowNull: true,
     },
   },
   {
-    sequelize,
     tableName: "PolicyMaker",
     timestamps: false,
     indexes: [
