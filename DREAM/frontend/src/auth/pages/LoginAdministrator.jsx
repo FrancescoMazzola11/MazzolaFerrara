@@ -39,7 +39,7 @@ const LoginAdministrator = () => {
         );
         authService.login(
           responseData.id,
-          responseData.mail,
+          responseData.email,
           responseData.token,
         );
         navigate("/");
