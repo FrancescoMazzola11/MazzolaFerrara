@@ -92,6 +92,7 @@ SteeringInitative.getInfo = async function (initativeID) {
       where: {
         initativeID,
       },
+      include: [{ as: "farmer", model: Farmer, attributes: ["mail"]}],
     });
     let report;
     if (moment(si.startingDate).add(3, "M").isSameOrBefore(moment())) {

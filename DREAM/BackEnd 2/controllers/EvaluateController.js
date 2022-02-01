@@ -72,7 +72,7 @@ const getSteeringInfo = async (req, res, next) => {
     } catch (error) {
         return next(
             new HttpError(
-              "At the moment is not possibile to retrieve information about this steering initative, try again later.",
+              error,
               500
             )
           );
