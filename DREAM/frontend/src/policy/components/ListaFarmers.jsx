@@ -18,9 +18,9 @@ const ListaFarmers = (props) => {
           <table class="ui celled table">
             <thead>
               <tr>
-                <th class="ten wide">Farmer</th>
+                <th class="ten wide text-center">Farmer</th>
                 <th class="three wide text-center">
-                  <Icon name="eye" />
+                <Icon size="large" name="eye" />
                 </th>
               </tr>
             </thead>
@@ -33,7 +33,7 @@ const ListaFarmers = (props) => {
                 //   farmerid={farmer.id}
                 //   />
                 <tr>
-                  <td>{farmer.mail}</td>
+                  <td className="text-center">{farmer.mail}</td>
                   <td className="text-center">
                     <Link
                       to={`/farmerpage/${farmer.id}`}

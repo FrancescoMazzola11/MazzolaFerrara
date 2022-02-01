@@ -23,7 +23,8 @@ const SteeringsList = () => {
               null,
               {Authorization: "Bearer "+token }
             );
-            setInitiatives(response.steeringsList);
+            console.log(response);
+            setInitiatives(response.steeringList);
           } catch (error) {
             Swal.fire({
               icon: "error",

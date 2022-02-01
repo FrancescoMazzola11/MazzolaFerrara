@@ -4,8 +4,8 @@ import Farmer from "./Production";
 import { Form, Card, Button, Icon, Header } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const ListaSteerings
- = (props) => {
+const ListaSteerings = (props) => {
+  console.log(props);
   if (props.initiatives.length === 0) {
     return (
       <div className="mx-0 justify-content-center">
@@ -19,21 +19,21 @@ const ListaSteerings
           <table class="ui celled table">
             <thead>
               <tr>
-                <th class="five wide">Starting Date</th>
-                <th class="five wide">Farmer</th>
+                <th class="five wide text-center">Starting Date</th>
+                <th class="five wide text-center">Farmer</th>
                 <th class="three wide text-center">
-                  <Icon name="eye" />
+                  <Icon size="large" name="eye" />
                 </th>
               </tr>
             </thead>
             <tbody>
               {props.initiatives.map((initiative) => (
                 <tr>
-                  <td>{initiative.}</td>
-                  <td>{initiative.}</td>
+                  <td className="text-center">{initiative.startingDate}</td>
+                  <td className="text-center">{initiative.farmer.mail}</td>
                   <td className="text-center">
                     <Link
-                      to={`/steering/${steering.id}`}
+                      to={`/steeringpage/${initiative.initativeID}`}
                       className=" btn btn-success text-decoration-none"
                       activeClassName="active"
                       style={{ backgroundColor: "teal", color: "white" }}
@@ -51,5 +51,4 @@ const ListaSteerings
     );
   }
 };
-export default ListaSteerings
-;
+export default ListaSteerings;
