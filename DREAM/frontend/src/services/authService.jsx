@@ -1,26 +1,26 @@
 class AuthService {
-    login(email, token, ruolo) {
-      sessionStorage.setItem("id", JSON.stringify(email));
+    login(id, email, token) {
+      sessionStorage.setItem("id", JSON.stringify(id));
       sessionStorage.setItem("token", JSON.stringify(token));
-      sessionStorage.setItem("ruolo", JSON.stringify(ruolo))
+      sessionStorage.setItem("email", JSON.stringify(email))
     }
   
     logout() {
       sessionStorage.removeItem("id");
       sessionStorage.removeItem("token");
-      sessionStorage.removeItem("ruolo")
+      sessionStorage.removeItem("email")
     }
   
     getCurrentToken() {
       return JSON.parse(sessionStorage.getItem("token"));
     }
   
-    getCurrentRuolo() {
-      return JSON.parse(sessionStorage.getItem("ruolo"));
+    getCurrentId() {
+      return JSON.parse(sessionStorage.getItem("id"));
     }
 
     getCurrentEmail() {
-      return JSON.parse(sessionStorage.getItem("id"));
+      return JSON.parse(sessionStorage.getItem("email"));
     }
   }
   export default new AuthService();

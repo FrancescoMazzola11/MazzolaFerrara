@@ -6,21 +6,25 @@ import ListaFarmer from "./../components/ListaFarmers"
 
 
  import Swal from "sweetalert2";
+import authService from "../../services/authService";
 
 
 const FarmerList = () => {
     const { sendRequest, isLoading } = useHttpClient();
     const [farmers, setFarmers] = useState();
+    const token = authService.getCurrentToken();
 
     useEffect(() => {
         const getFarmers = async () => {
           try {
             const response = await sendRequest(
-              process.env.REACT_APP_JAVA_BASE_URL + "/evaluate/getFarmers",
+              process.env.REACT_APP_BASE_URL + "/evaluate/getFarmers",
               "GET",
-              null
+              null,
+              {Authorization: "Bearer "+token }
+
             );
-            setFarmers(response);
+            setFarmers(response.farmers);
           } catch (error) {
             Swal.fire({
               icon: "error",
