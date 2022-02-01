@@ -1,30 +1,31 @@
 const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Production', {
+const db = require("../config/database");
+
+const Production = db.define('Production', {
     productionID: {
       autoIncrement: true,
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true
     },
     period: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true
     },
     date: {
-      type: DataTypes.DATEONLY,
+      type: Sequelize.DataTypes.DATEONLY,
       allowNull: true
     },
     amount: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true
     },
     problem: {
-      type: DataTypes.STRING(255),
+      type: Sequelize.DataTypes.STRING(255),
       allowNull: true
     },
     prodTypeID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: 'ProductionType',
@@ -32,7 +33,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     },
     farmerID: {
-      type: DataTypes.INTEGER,
+      type: Sequelize.DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: 'Farmer',
@@ -40,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
       }
     }
   }, {
-    sequelize,
+
     tableName: 'Production',
     timestamps: false,
     indexes: [
@@ -68,4 +69,6 @@ module.exports = function(sequelize, DataTypes) {
       },
     ]
   });
-};
+
+
+  module.exports = Production;

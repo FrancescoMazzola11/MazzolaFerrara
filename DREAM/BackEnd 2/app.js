@@ -4,10 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+const evaluateRouter = require("./routes/evaluate-routes")
+const accountRouter = require("./routes/accountManagement-routes")
+const steeringRouter = require("./routes/steering-routes");
+const bodyParser = require('body-parser');
 
-var app = express();
+const app = express();
+app.listen(5000);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -19,23 +22,48 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use((req, res, next) => {
+  res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+  res.setHeader(
+    "Access-Control-Allow-Headers",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization"
+  );
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE");
+
+  next();
+});
+
+app.use('/login', accountRouter);
+app.use("/evaluate/", evaluateRouter);
+app.use("/steering/", steeringRouter);
+
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
+
+
+
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  next(createError(404));
+app.use((req, res, next) => {
+  const error = new HttpError("Route non trovata", 404);
+  throw error;
 });
 
 // error handler
-app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // render the error page
-  res.status(err.status || 500);
-  res.render('error');
+app.use((error, req, res, next) => {
+  
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || "Errore generico!" });
 });
+
+
 
 module.exports = app;
