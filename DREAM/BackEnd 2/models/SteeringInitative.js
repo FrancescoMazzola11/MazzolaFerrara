@@ -6,6 +6,7 @@ const Report = require("./Report");
 const ProductionType = require("./ProductionType");
 const Farmer = require("./Farmer");
 const Location = require("./Location");
+const Agronomist = require("./Agronomist");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -15,10 +16,6 @@ const SteeringInitative = db.define(
       type: Sequelize.DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
-    },
-    agronomistName: {
-      type: Sequelize.DataTypes.STRING(255),
-      allowNull: true,
     },
     grade: {
       type: Sequelize.DataTypes.INTEGER,
@@ -44,6 +41,14 @@ const SteeringInitative = db.define(
         key: "pmID",
       },
     },
+    agronomistID: {
+      type: Sequelize.DataTypes.INTEGER,
+      allowNull: true,
+      references: {
+        model: "Agronomist",
+        key: "agronomistID",
+      },
+    },
   },
   {
     tableName: "SteeringInitative",
@@ -64,6 +69,12 @@ const SteeringInitative = db.define(
         name: "SteeringInitative_FK_2",
         using: "BTREE",
         fields: [{ name: "farmerID" }],
+      },
+      {
+        name: "SteeringInitative_FK_3",
+        unique: true,
+        using: "BTREE",
+        fields: [{ name: "agronomistID" }],
       },
     ],
   }
@@ -100,6 +111,11 @@ SteeringInitative.getInfo = async function (initativeID) {
           attributes: ["mail"],
           include: [{ as: "location", model: Location, attributes: ["name"] }],
         },
+        {
+          as: "SteeringInitatives",
+          model: Farmer,
+          attributes: ["email"],
+        },
       ],
     });
     let report;
@@ -127,4 +143,14 @@ Farmer.hasMany(SteeringInitative, {
   as: "SteeringInitatives",
   foreignKey: "farmerID",
 });
+
+SteeringInitative.belongsTo(Agronomist, {
+  as: "agronomist",
+  foreignKey: "agronomistID",
+});
+Agronomist.hasMany(SteeringInitative, {
+  as: "SteeringInitatives",
+  foreignKey: "agronomistID",
+});
+
 module.exports = SteeringInitative;
