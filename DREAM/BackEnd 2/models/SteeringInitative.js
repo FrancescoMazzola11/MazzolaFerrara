@@ -112,8 +112,8 @@ SteeringInitative.getInfo = async function (initativeID) {
           include: [{ as: "location", model: Location, attributes: ["name"] }],
         },
         {
-          as: "SteeringInitatives",
-          model: Farmer,
+          as: "agronomist",
+          model: Agronomist,
           attributes: ["email"],
         },
       ],
