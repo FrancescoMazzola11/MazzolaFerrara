@@ -8,7 +8,7 @@ const getBadFarmers = async (req, res, next) => {
 
     badFarmers = await Farmer.getBadFarmers();
 
-    res.json({
+    res.status(200).json({
       badFarmers,
     });
   } catch (err) {
@@ -21,7 +21,7 @@ const createSteeringInitative = async (req, res, next) => {
   const { farmerID, agronomistName } = req.body;
   try {
     const si = await SteeringInitative.createSteering(farmerID, agronomistName, pmID);
-    res.json({
+    res.status(201).json({
       si,
     });
   } catch (error) {

@@ -107,6 +107,21 @@ Farmer.getInfo = async function (farmerID) {
   }
 };
 
+Farmer.evaluateFarmer = async function (farmerID, grade) {
+  try {
+    await Farmer.update({
+      trend: grade
+    }, 
+    {
+      where: {
+        id: farmerID
+      }
+    })
+  } catch (err) {
+    throw err;
+  }
+}
+
 ProdTypeFarmer.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID" });
 Farmer.hasMany(ProdTypeFarmer, {
   as: "ProdTypeFarmers",

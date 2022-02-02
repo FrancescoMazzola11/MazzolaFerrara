@@ -134,6 +134,22 @@ SteeringInitative.getInfo = async function (initativeID) {
     throw error;
   }
 };
+
+SteeringInitative.evaluateSteering = async function (initativeID, grade) {
+  try {
+    await SteeringInitative.update({
+      grade,
+    }, 
+    {
+      where: {
+        initativeID
+      }
+    });
+  } catch (error) {
+    throw error;
+  }
+};
+
 Report.belongsTo(SteeringInitative, {
   as: "steeringInitative",
   foreignKey: "initativeID",

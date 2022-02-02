@@ -8,6 +8,7 @@ const evaluateRouter = require("./routes/evaluate-routes")
 const accountRouter = require("./routes/accountManagement-routes")
 const steeringRouter = require("./routes/steering-routes");
 const bodyParser = require('body-parser');
+const HttpError = require('./models/http-error');
 
 const app = express();
 app.listen(5000);

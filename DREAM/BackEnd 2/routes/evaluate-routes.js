@@ -9,4 +9,7 @@ router.get("/getFarmers", evaluateController.getFarmers);
 router.get("/farmerInfo/:farmerID", evaluateController.getFarmerInfo)
 router.get("/getSteering", evaluateController.getSteering);
 router.get("/steeringInfo/:initativeID", evaluateController.getSteeringInfo)
+router.post("/evaluateFarmer", evaluateController.evaluateFarmer)
+router.post("/evaluateSteering", evaluateController.evaluateSteering)
+
 module.exports = router;
