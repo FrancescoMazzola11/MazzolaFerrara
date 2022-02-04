@@ -61,7 +61,7 @@ const LoginAdministrator = () => {
             <Card color="green" centered fluid>
               <Card.Header>
                 <Header as="h2" className="text-center my-3">
-                  LOGIN AS A POLICY MAKER
+                  LOGIN
                 </Header>
               </Card.Header>
               <Card.Content>

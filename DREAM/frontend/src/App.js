@@ -14,7 +14,7 @@ import NavBar from "./shared/components/NavBar";
 import Footer from "./shared/components/Footer";
 import LandingPage from "./homepage/pages/LandingPage";
 import Demo from "./homepage/pages/Demo";
-import Login from "./auth/pages/Login"
+import Login from "./auth/pages/LoginAdministrator"
 import LoginPolicyMaker from "./auth/pages/LoginAdministrator"
 import ListOfFarmers from "./policy/pages/FarmersList"
 import FarmerPage from "./policy/pages/FarmerPage"
