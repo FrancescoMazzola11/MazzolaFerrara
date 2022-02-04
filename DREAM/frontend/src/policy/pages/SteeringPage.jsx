@@ -110,12 +110,14 @@ const SteeringPage = () => {
                     Location
                   </Label>{" "}
                   {steering.si.farmer.location.name}
-                  <hr />
-                  <Icon name="winner"></Icon>
                   {steering.si.grade && (
-                    <Label className="mt-2" color="green" size="large">
-                      This initiative was evaluated as Positive
-                    </Label>
+                    <React.Fragment>
+                      <hr />
+                      <Icon name="winner"></Icon>
+                      <Label className="mt-2" color="green" size="large">
+                        This initiative was evaluated as Positive
+                      </Label>
+                    </React.Fragment>
                   )}
                   <br />
                   {/* <Icon name="numbered list"></Icon>

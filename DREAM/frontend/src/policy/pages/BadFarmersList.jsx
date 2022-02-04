@@ -63,7 +63,7 @@ const BadFarmersList = () => {
       <div className="container">
       <div class="mt-3 pt-3">
         <h2>
-          List of Farmers
+          List of Bad Farmers
         </h2>
         <hr/>
          {!isLoading && farmers && (
