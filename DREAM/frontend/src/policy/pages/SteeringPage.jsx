@@ -218,7 +218,7 @@ const SteeringPage = () => {
                                         </strong>
                                       </React.Fragment>
                                     )}
-                                    {r.prodRateAfter < r.prodRateBefore && (
+                                    {r.prodRateAfter <= r.prodRateBefore && (
                                       <React.Fragment>
                                         <Label
                                           size="large"
