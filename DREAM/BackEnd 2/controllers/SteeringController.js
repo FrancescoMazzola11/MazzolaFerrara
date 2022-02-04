@@ -32,7 +32,7 @@ const createSteeringInitative = async (req, res, next) => {
 
 const getAgronomists = async (req, res, next) => {
   try {
-    const agronomists = await Agronomist.getAgronomists()
+    const agronomists = await Agronomist.findAll()
     res.status(200).json({
       agronomists
     })
