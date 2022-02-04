@@ -25,8 +25,15 @@ const BadFarmersList = () => {
             null,
             {Authorization: "Bearer "+token }
           );
-          console.log(response)
-          setAgronomists(response.agronomists);
+          const agronomist_response = [];
+          response.agronomists.forEach((agronomist) => {
+            agronomist_response.push({
+              key: agronomist.agronomistID,
+              value: agronomist.email,
+              text: agronomist.email
+            });
+          });
+          setAgronomists(agronomist_response);
         } catch (error) {
           Swal.fire({
             icon: "error",
@@ -66,8 +73,8 @@ const BadFarmersList = () => {
           List of Farmers
         </h2>
         <hr/>
-         {!isLoading && farmers && (
-            <ListaBadFarmer farmers = {farmers}  />
+         {!isLoading && farmers && agronomists && (
+            <ListaBadFarmer farmers = {farmers} agronomists = {agronomists}  />
           )}
       </div>
               </div>
