@@ -88,7 +88,7 @@ const SteeringPage = () => {
     <React.Fragment>
       <div className="container">
         <div class="mt-3 pt-3">
-          <h2>Farmer information</h2>
+          <h2>Steering information</h2>
           <hr />
           {!isLoading && steering && (
             <div className="container">
@@ -152,7 +152,7 @@ const SteeringPage = () => {
                       </Button>
                     )}
                   </div>
-                  <h2>Productions report</h2>
+                  <h2>Farmer productions report</h2>
                   {steering.report ? (
                     <React.Fragment>
                       {" "}
