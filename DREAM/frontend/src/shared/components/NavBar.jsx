@@ -60,7 +60,7 @@ const NavBar = () => {
                 style={{ marginLeft: 20 }}
                 onClick={() => {
                   authService.logout();
-                  navigate(0);
+                  navigate("/");
                 }}
               >
                 Logout{" "}
