@@ -1,3 +1,4 @@
+const Agronomist = require("../models/Agronomist");
 const Farmer = require("../models/Farmer");
 const HttpError = require("../models/http-error");
 const SteeringInitative = require("../models/SteeringInitative");
@@ -46,7 +47,7 @@ const getFarmerInfo = async (req, res, next) => {
 const getSteering = async (req, res, next) => {
   try {
     const steeringList = await SteeringInitative.findAll({
-      include: [{ as: "farmer", model: Farmer, attributes: ["mail"] }],
+      include: [{ as: "farmer", model: Farmer, attributes: ["mail"] }, {as: "agronomist", model: Agronomist, attributes: ["email"] }],
     });
 
     res.status(200).json({
