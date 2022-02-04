@@ -45,13 +45,11 @@ const NavBar = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="/">
-              {/* <FontAwesomeIcon className="fa-lg" icon={faHome} /> */}
-              {"Home"}
-            </Nav.Link>
+            {/* Home button removed since PM's home is farmers page */}
             {user && (
               <React.Fragment>
                 <Nav.Link href="/">Farmers</Nav.Link>
+                <Nav.Link href="/badfarmerslist">Bad Farmers  </Nav.Link>
                 <Nav.Link href="/steeringlist">Steering Initiatives  </Nav.Link>
               </React.Fragment>
             )}

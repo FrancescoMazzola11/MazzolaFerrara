@@ -20,12 +20,14 @@ import {
   Link,
 } from "react-router-dom";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router";
 import authService from "../../services/authService";
 
 const SteeringPage = () => {
   const { sendRequest, isLoading } = useHttpClient();
   const [steering, setSteering] = useState();
   const id = useParams().id;
+  const navigate = useNavigate();
   const containerStyle = {
     width: "100%",
     height: "100%",
@@ -35,7 +37,31 @@ const SteeringPage = () => {
     lng: 78.574823,
   };
   const token = authService.getCurrentToken();
-
+  const evaluate = async (grade) => {
+    try {
+      const response = await sendRequest(
+        process.env.REACT_APP_BASE_URL + "/evaluate/evaluateSteering/",
+        "POST",
+        JSON.stringify({ initativeID: steering.si.initativeID, grade }),
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        }
+      );
+      Swal.fire({
+        icon: "success",
+        title: "Correctly Evaluated",
+      }).then(() => {
+        navigate("/steeringlist");
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong...",
+        text: error.message,
+      });
+    }
+  };
   useEffect(() => {
     const getSteering = async () => {
       try {
@@ -78,12 +104,19 @@ const SteeringPage = () => {
                   <Label className="mt-2" color="teal" size="large">
                     Agronomist
                   </Label>{" "}
-                  {steering.si.agronomistName} <br />
+                  {steering.si.agronomist.email} <br />
                   <Icon name="map"></Icon>
                   <Label className="mt-2" color="facebook" size="large">
                     Location
                   </Label>{" "}
                   {steering.si.farmer.location.name}
+                  <hr />
+                  <Icon name="winner"></Icon>
+                  {steering.si.grade && (
+                    <Label className="mt-2" color="green" size="large">
+                      This initiative was evaluated as Positive
+                    </Label>
+                  )}
                   <br />
                   {/* <Icon name="numbered list"></Icon>
                 <Label className="mt-2" color="facebook" size="large">
@@ -106,9 +139,16 @@ const SteeringPage = () => {
                 </div>
                 <div className="row mt-3">
                   <div className="col-md-12 text-center mt-3 mb-3">
-                    <Button className="mr-3" color="green">
-                      Good Steering Initiative
-                    </Button>
+                    {!steering.si.grade && (
+                      <Button
+                        className="mr-3"
+                        color="green"
+                        onClick={() => evaluate(1)}
+                      >
+                        Good Steering Initiative &nbsp;
+                        <Icon name="thumbs up" />
+                      </Button>
+                    )}
                   </div>
                   <h2>Productions report</h2>
                   {steering.report ? (

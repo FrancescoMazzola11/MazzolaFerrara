@@ -9,6 +9,8 @@ import {
   TextArea,
   Label,
 } from "semantic-ui-react";
+import { useNavigate } from "react-router";
+
 import { GoogleMap, LoadScript } from "@react-google-maps/api";
 import { useHttpClient } from "../../util/http-hook";
 import {
@@ -25,6 +27,7 @@ import ListaProduction from "../components/ListaProduction";
 const FarmerList = () => {
   const { sendRequest, isLoading } = useHttpClient();
   const [farmer, setFarmer] = useState();
+  const navigate = useNavigate();
   const id = useParams().id;
   const containerStyle = {
     width: "90%",
@@ -35,6 +38,28 @@ const FarmerList = () => {
   const center = {
     lat: 17.669638,
     lng: 78.574823,
+  };
+  const evaluate = async (grade) => {
+    try {
+      const response = await sendRequest(
+        process.env.REACT_APP_BASE_URL + "/evaluate/evaluateFarmer/",
+        "POST",
+        JSON.stringify({ farmerID: farmer.farmerInfo.id, grade }),
+        {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token,
+        }
+      );
+      Swal.fire({
+        icon: "success",
+        title: "Correctly Evaluated"
+      }).then(()=>{navigate("/")});    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Something went wrong...",
+        text: error.message,
+      });
+    }
   };
   useEffect(() => {
     const getFarmer = async () => {
@@ -93,7 +118,7 @@ const FarmerList = () => {
                       {farmer.farmerInfo.ProdTypeFarmers.map((prod) => (
                         <Label className="mt-2" color="facebook">
                           {prod.prodType.name}
-                      </Label>
+                        </Label>
                       ))}
                     </li>
                     {/* get list of production types of the farmer */}
@@ -114,24 +139,34 @@ const FarmerList = () => {
                 </div>
                 <div className="row mt-3">
                   <div className="col-md-12 text-center mt-3 mb-3">
-                    <Button className="mr-3" color="green">
-                      Good Farmer
+                    <Button
+                      className="ml-3"
+                      color="green"
+                      onClick={() => evaluate(1)}
+                    >
+                      Good Farmer &nbsp;
+                      <Icon name="thumbs up" />
                     </Button>
                     &nbsp;
-                    <Button className="mr-3 ml-3" color="yellow">
+                    {/* <Button className="mr-3 ml-3" color="yellow">
                       Assign to a Steering Initiative
                     </Button>
-                    &nbsp;
-                    <Button className="ml-3" color="red">
-                      Bad Farmer
+                    &nbsp; */}
+                    <Button
+                      className="ml-3"
+                      color="red"
+                      onClick={() => evaluate(0)}
+                    >
+                      Bad Farmer &nbsp;
+                      <Icon name="thumbs down" />
                     </Button>
                   </div>
 
                   <h2>Farmer latest productions</h2>
                   <hr />
                   <div className="container">
-                  {!isLoading && farmer.farmerProductions && (
-                      <ListaProduction productions = {farmer.farmerProductions}  />
+                    {!isLoading && farmer.farmerProductions && (
+                      <ListaProduction productions={farmer.farmerProductions} />
                     )}
                   </div>
                 </div>

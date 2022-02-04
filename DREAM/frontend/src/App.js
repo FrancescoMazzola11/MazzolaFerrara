@@ -20,6 +20,7 @@ import ListOfFarmers from "./policy/pages/FarmersList"
 import FarmerPage from "./policy/pages/FarmerPage"
 import SteeringPage from "./policy/pages/SteeringPage"
 import SteeringList from "./policy/pages/SteeringsList"
+import BadFarmersList from './policy/pages/BadFarmersList';
 require ("dotenv").config()
 const user = authService.getCurrentEmail();
 
@@ -34,6 +35,7 @@ function App() {
           <Route path="/" element={<ListOfFarmers />} />
           <Route path="/farmerpage/:id" element={<FarmerPage />} />
           <Route path="/steeringlist" element={<SteeringList />} />
+          <Route path="/badfarmerslist" element={<BadFarmersList />} />
           <Route path="/steeringpage/:id" element={<SteeringPage />} />
 
           <Route path="/demo" element={<Demo />} />
