@@ -6,5 +6,6 @@ const router = express.Router();
 
 router.use(checkAuth)
 router.get("/getBadFarmers", steeringController.getBadFarmers);
+router.get("/getAgronomists", steeringController.getAgronomists);
 router.post("/createSteering", steeringController.createSteeringInitative)
 module.exports = router;

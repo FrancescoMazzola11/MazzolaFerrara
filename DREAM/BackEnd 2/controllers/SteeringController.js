@@ -1,3 +1,4 @@
+const Agronomist = require("../models/Agronomist");
 const Farmer = require("../models/Farmer");
 const HttpError = require("../models/http-error");
 const SteeringInitative = require("../models/SteeringInitative");
@@ -12,7 +13,7 @@ const getBadFarmers = async (req, res, next) => {
       badFarmers,
     });
   } catch (err) {
-    return next(new HttpError("Athentication failed, try again later.", 500));
+    return next(new HttpError("An error occured, try again later", 500));
   }
 };
 
@@ -25,10 +26,21 @@ const createSteeringInitative = async (req, res, next) => {
       si,
     });
   } catch (error) {
-    return next(new HttpError("Athentication failed, try again later.", 500));
+    return next(new HttpError("An error occured, try again later", 500));
   }
 };
 
+const getAgronomists = async (req, res, next) => {
+  try {
+    const agronomists = await Agronomist.getAgronomists()
+    res.status(200).json({
+      agronomists
+    })
+  } catch (error) {
+    return next(new HttpError("An error occured, try again later", 500));
+  }
+}
 
+exports.getAgronomists = getAgronomists;
 exports.createSteeringInitative = createSteeringInitative;
 exports.getBadFarmers = getBadFarmers;
