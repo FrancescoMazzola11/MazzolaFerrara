@@ -9,6 +9,9 @@ const getFarmers = async (req, res, next) => {
 
     farmers = await Farmer.findAll({
       attributes: ["id", "mail"],
+      order: [
+        ["mail", "ASC"]
+      ]
     });
 
     res.status(200).json({
@@ -47,7 +50,11 @@ const getFarmerInfo = async (req, res, next) => {
 const getSteering = async (req, res, next) => {
   try {
     const steeringList = await SteeringInitative.findAll({
-      include: [{ as: "farmer", model: Farmer, attributes: ["mail"] }, {as: "agronomist", model: Agronomist, attributes: ["email"] }],
+      include: [
+        { as: "farmer", model: Farmer, attributes: ["mail"] },
+        { as: "agronomist", model: Agronomist, attributes: ["email"] },
+      ], 
+      order: [[['startingDate', 'DESC']]],
     });
 
     res.status(200).json({
