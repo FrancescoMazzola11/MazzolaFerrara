@@ -13,15 +13,15 @@ const getBadFarmers = async (req, res, next) => {
       badFarmers,
     });
   } catch (err) {
-    return next(new HttpError("An error occured, try again later", 500));
+    return next("An error occured, try again later", 500);
   }
 };
 
 const createSteeringInitative = async (req, res, next) => {
   const pmID = req.userData.id;
-  const { farmerID, agronomistName } = req.body;
+  const { farmerID, agronomistID } = req.body;
   try {
-    const si = await SteeringInitative.createSteering(farmerID, agronomistName, pmID);
+    const si = await SteeringInitative.createSteering(farmerID, agronomistID, pmID);
     res.status(201).json({
       si,
     });

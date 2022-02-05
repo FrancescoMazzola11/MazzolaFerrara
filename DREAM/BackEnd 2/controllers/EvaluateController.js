@@ -63,7 +63,7 @@ const getSteering = async (req, res, next) => {
   } catch (err) {
     return next(
       new HttpError(
-        "At the moment is not possibile to retrieve steering initatives, try again later.",
+        err,
         500
       )
     );

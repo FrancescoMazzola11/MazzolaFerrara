@@ -1,7 +1,6 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 var moment = require("moment-timezone");
-const { report } = require("../routes/evaluate-routes");
 const Report = require("./Report");
 const ProductionType = require("./ProductionType");
 const Farmer = require("./Farmer");
@@ -82,13 +81,13 @@ const SteeringInitative = db.define(
 
 SteeringInitative.createSteering = async function (
   farmerID,
-  agronomistName,
+  agronomistID,
   pmID
 ) {
   try {
     const si = await SteeringInitative.create({
       farmerID,
-      agronomistName,
+      agronomistID,
       startingDate: moment().format(),
       pmID,
     });
@@ -154,11 +153,8 @@ Report.belongsTo(SteeringInitative, {
   as: "steeringInitative",
   foreignKey: "initativeID",
 });
-SteeringInitative.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID" });
-Farmer.hasMany(SteeringInitative, {
-  as: "SteeringInitatives",
-  foreignKey: "farmerID",
-});
+
+
 
 SteeringInitative.belongsTo(Agronomist, {
   as: "agronomist",
