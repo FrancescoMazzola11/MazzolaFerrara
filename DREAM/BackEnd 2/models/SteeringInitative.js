@@ -6,6 +6,7 @@ const ProductionType = require("./ProductionType");
 const Farmer = require("./Farmer");
 const Location = require("./Location");
 const Agronomist = require("./Agronomist");
+const { ForeignKeyConstraintError } = require("sequelize");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -78,6 +79,22 @@ const SteeringInitative = db.define(
     ],
   }
 );
+
+SteeringInitative.getActiveSteering = async function (farmerID) {
+  try {
+    const steering = await SteeringInitative.findAll({
+      where: {
+        farmerID,
+        startingDate: {
+          [Sequelize.Op.gt]: moment().diff(3, "M"),
+        },
+      }
+    })
+    return steering
+  } catch (error) {
+    throw error
+  }
+}
 
 SteeringInitative.createSteering = async function (
   farmerID,
