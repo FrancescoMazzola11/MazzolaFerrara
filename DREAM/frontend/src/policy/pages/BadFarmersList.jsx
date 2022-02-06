@@ -1,15 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { Image } from "react-bootstrap";
-import {
-  Form,
-  Card,
-  Button,
-  Icon,
-  Header,
-  Modal,
-  Dropdown,
-  Label,
-} from "semantic-ui-react";
 import { useHttpClient } from "../../util/http-hook";
 import ListaBadFarmer from "../components/ListaBadFarmers";
 
