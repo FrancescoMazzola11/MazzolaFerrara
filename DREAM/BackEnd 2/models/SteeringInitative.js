@@ -152,7 +152,8 @@ SteeringInitative.getInfo = async function (initativeID) {
       ],
     });
     let report;
-    if (moment(si.startingDate).add(3, "M").isSameOrBefore(moment())) {
+
+    if (si && moment(si.startingDate).add(3, "M").isSameOrBefore(moment())) {
       report = await Report.findAll({
         where: {
           initativeID,
