@@ -2,8 +2,18 @@ import { Image}  from "react-bootstrap"
 import React from "react"
 
 
-const Footer = () => <footer style={{marginTop:"0"}} className="page-footer font-small blue pt-4">
-    <div className="container-fluid text-center text-md-left bg-light text-dark text-light">
+const Footer = () => <React.Fragment> <center style={{marginTop:"30vh"}} >
+<div className="jumbotron">
+  <img
+    class="mb-0 mt-3"
+    width="100%"
+    src="https://lacerba.io/assets/gradient-scolarship.png"
+    alt=""
+  />
+</div>
+</center>
+<footer style={{marginTop:"-30px"}} className="bg-light page-footer font-small blue pt-4">
+    <div className="container-fluid text-center text-md-left text-dark text-light">
         <div className="row mt-3 pt-3">
             <div className="col-md-6 mt-md-0 mt-3">
                 <h5 className="text-uppercase">What's DREAMS?</h5>
@@ -27,5 +37,6 @@ const Footer = () => <footer style={{marginTop:"0"}} className="page-footer font
     </div>
 
 </footer>
+</React.Fragment>
 
 export default Footer;
