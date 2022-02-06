@@ -13,18 +13,29 @@ const getBadFarmers = async (req, res, next) => {
       badFarmers,
     });
   } catch (err) {
-    return next(new HttpError("An error occured, try again later", 500));
+    return next("An error occured, try again later", 500);
   }
 };
 
 const createSteeringInitative = async (req, res, next) => {
   const pmID = req.userData.id;
-  const { farmerID, agronomistName } = req.body;
+  const { farmerID, agronomistID } = req.body;
   try {
-    const si = await SteeringInitative.createSteering(farmerID, agronomistName, pmID);
-    res.status(201).json({
-      si,
-    });
+    const activeFarmerSteering = await SteeringInitative.getActiveSteering(
+      farmerID
+    );
+    if (activeFarmerSteering.length) {
+      res.status(500).json("User already in a steering initiative");
+    } else {
+      const si = await SteeringInitative.createSteering(
+        farmerID,
+        agronomistID,
+        pmID
+      );
+      res.status(201).json({
+        si,
+      });
+    }
   } catch (error) {
     return next(new HttpError("An error occured, try again later", 500));
   }
@@ -32,14 +43,14 @@ const createSteeringInitative = async (req, res, next) => {
 
 const getAgronomists = async (req, res, next) => {
   try {
-    const agronomists = await Agronomist.findAll()
+    const agronomists = await Agronomist.findAll();
     res.status(200).json({
-      agronomists
-    })
+      agronomists,
+    });
   } catch (error) {
     return next(new HttpError("An error occured, try again later", 500));
   }
-}
+};
 
 exports.getAgronomists = getAgronomists;
 exports.createSteeringInitative = createSteeringInitative;

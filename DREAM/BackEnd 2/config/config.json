@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "dream",
+    "password": "Dream123",
+    "database": "Dream",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "dream",
+    "password": "Dream123",
+    "database": "Dream",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "dream",
+    "password": "Dream123",
+    "database": "Dream",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}

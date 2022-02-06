@@ -1,12 +1,12 @@
 const Sequelize = require("sequelize");
 const db = require("../config/database");
 var moment = require("moment-timezone");
-const { report } = require("../routes/evaluate-routes");
 const Report = require("./Report");
 const ProductionType = require("./ProductionType");
 const Farmer = require("./Farmer");
 const Location = require("./Location");
 const Agronomist = require("./Agronomist");
+const { ForeignKeyConstraintError } = require("sequelize");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -80,15 +80,31 @@ const SteeringInitative = db.define(
   }
 );
 
+SteeringInitative.getActiveSteering = async function (farmerID) {
+  try {
+    const steering = await SteeringInitative.findAll({
+      where: {
+        farmerID,
+        startingDate: {
+          [Sequelize.Op.gt]: moment().diff(3, "M"),
+        },
+      }
+    })
+    return steering
+  } catch (error) {
+    throw error
+  }
+}
+
 SteeringInitative.createSteering = async function (
   farmerID,
-  agronomistName,
+  agronomistID,
   pmID
 ) {
   try {
     const si = await SteeringInitative.create({
       farmerID,
-      agronomistName,
+      agronomistID,
       startingDate: moment().format(),
       pmID,
     });
@@ -154,11 +170,8 @@ Report.belongsTo(SteeringInitative, {
   as: "steeringInitative",
   foreignKey: "initativeID",
 });
-SteeringInitative.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID" });
-Farmer.hasMany(SteeringInitative, {
-  as: "SteeringInitatives",
-  foreignKey: "farmerID",
-});
+
+
 
 SteeringInitative.belongsTo(Agronomist, {
   as: "agronomist",
