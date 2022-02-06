@@ -120,12 +120,6 @@ const SteeringPage = () => {
                     </React.Fragment>
                   )}
                   <br />
-                  {/* <Icon name="numbered list"></Icon>
-                <Label className="mt-2" color="facebook" size="large">
-                  Productions
-                </Label>{" "}
-                production.name }{" "} */}
-                  {/* get list of production types of the farmer */}
                 </div>
                 <div className="col-md-4">
                   <LoadScript googleMapsApiKey="AIzaSyDX_OSdMYc79SeKrOLBh7VqZ5_n-mdexew">
@@ -134,14 +128,13 @@ const SteeringPage = () => {
                       center={center}
                       zoom={9}
                     >
-                      {/* Child components, such as markers, info windows, etc. */}
                       <></>
                     </GoogleMap>
                   </LoadScript>
                 </div>
                 <div className="row mt-3">
                   <div className="col-md-12 text-center mt-3 mb-3">
-                    {!steering.si.grade && (
+                    {!steering.si.grade && steering.report && (
                       <Button
                         className="mr-3"
                         color="green"

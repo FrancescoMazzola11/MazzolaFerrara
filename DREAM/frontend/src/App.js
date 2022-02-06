@@ -32,7 +32,7 @@ function App() {
   if (user) {
     routes = (
       <Routes>
-        <Route path="/farmers" element={<ListOfFarmers />} />
+        <Route path="/" element={<ListOfFarmers />} />
         <Route path="/farmerpage/:id" element={<FarmerPage />} />
         <Route path="/steeringlist" element={<SteeringList />} />
         <Route path="/badfarmerslist" element={<BadFarmersList />} />
