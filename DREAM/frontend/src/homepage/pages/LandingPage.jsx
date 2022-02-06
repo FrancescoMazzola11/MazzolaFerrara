@@ -21,7 +21,10 @@ const LandingPage = () => {
         </h3>
       </div>
               </div>
-              
+              <center>
+                <Button href="/login" className="mt-4 btn-success">&nbsp;LOG-IN&nbsp;
+                </Button>
+              </center>
     </React.Fragment>
   );
 };

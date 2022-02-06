@@ -8,7 +8,7 @@ class AuthService {
     logout() {
       sessionStorage.removeItem("id");
       sessionStorage.removeItem("token");
-      sessionStorage.removeItem("email")
+      sessionStorage.removeItem("email");
     }
   
     getCurrentToken() {
