@@ -6,7 +6,7 @@ const ListaBadFarmers = (props) => {
   if (props.farmers.length === 0) {
     return (
       <div className="mx-0 justify-content-center">
-        No "Bad Farmer" is here at the moment.
+        No "Bad Farmer" without an active steering initiative is present.
       </div>
     );
   } else {
