@@ -20,13 +20,7 @@ const Demo = () => {
 
       </div>
               </div>
-              <center>
-              <div className="jumbotron">
-              <br/>
-              <br/>
-              <img class="mb-0" width="100%" src="https://lacerba.io/assets/gradient-scolarship.png" alt=""/>
-              </div>
-              </center>
+              
     </React.Fragment>
   );
 };

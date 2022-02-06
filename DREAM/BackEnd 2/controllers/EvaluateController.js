@@ -8,7 +8,7 @@ const getFarmers = async (req, res, next) => {
     let farmers;
 
     farmers = await Farmer.findAll({
-      attributes: ["id", "mail"],
+      attributes: ["id", "mail", "trend"],
       order: [["mail", "ASC"]],
     });
 

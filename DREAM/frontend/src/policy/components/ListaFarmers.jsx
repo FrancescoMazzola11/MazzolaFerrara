@@ -15,25 +15,34 @@ const ListaFarmers = (props) => {
     return (
       <React.Fragment>
         <div className=" my-2 mx-3">
-          <table class="ui celled table">
+          <table class="ui celled table" style={{ fontSize: "1.3em" }}>
             <thead>
               <tr>
                 <th class="ten wide text-center">Farmer</th>
                 <th class="three wide text-center">
-                <Icon size="large" name="eye" />
+                  <Icon size="large" name="eye" />
                 </th>
               </tr>
             </thead>
             <tbody>
               {props.farmers.map((farmer) => (
-                //avoid formatting using an object each but rather get the objects into a single table without using the FarmerObject
-                // <Farmer
-                //   key={farmer.id}
-                //   name={farmer.mail}
-                //   farmerid={farmer.id}
-                //   />
-                <tr>
-                  <td className="text-center">{farmer.mail}</td>
+                <tr className="mt-2">
+                  <td className="text-center justify-content-end mt-3 pt-3">
+                    {farmer.trend && (
+                      <React.Fragment>
+                        &nbsp;
+                        {/* <span
+                          className="btn-success btn-lg rounded-pill"
+                          color="teal"
+                        > */}
+                        {/* <Icon name="certificate" color="teal" /> */}
+                        <Icon name="check circle" color="teal" />
+                        {/* </span> */}
+                      </React.Fragment>
+                    )}
+                    &nbsp;
+                    {farmer.mail}
+                  </td>
                   <td className="text-center">
                     <Link
                       to={`/farmerpage/${farmer.id}`}
@@ -48,6 +57,7 @@ const ListaFarmers = (props) => {
               ))}
             </tbody>
           </table>
+          <Icon name="check circle" color="teal" />{": Is a good farmer"}
         </div>
 
         <br></br>

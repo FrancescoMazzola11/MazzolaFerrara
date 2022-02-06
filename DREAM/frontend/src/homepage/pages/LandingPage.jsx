@@ -21,14 +21,7 @@ const LandingPage = () => {
         </h3>
       </div>
               </div>
-              <center>
-              <div className="jumbotron">
-              <Button href="/login" className="btn mt-3 mb-3 btn-success"> Log-In / Sign-Up</Button>
-              <br/>
-              <br/>
-              <img class="mb-0" width="100%" src="https://lacerba.io/assets/gradient-scolarship.png" alt=""/>
-              </div>
-              </center>
+              
     </React.Fragment>
   );
 };
