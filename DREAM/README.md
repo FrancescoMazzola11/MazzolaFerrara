@@ -32,4 +32,7 @@ If any error occurs make sure to have Administration/root Privileges on the Shel
 
 ## Enjoy DREAMS
 Now a webpage will pop-up in order to let you use the DREAMS applcation, if the browser does not 
-automatically start you can go to `http://localhost:3000` and use DREAM
+automatically start you can go to `http://localhost:3000` and use DREAM.
+In order to login as a policy maker you can use the following data:
+email: 123@gmail.com
+password: 123
