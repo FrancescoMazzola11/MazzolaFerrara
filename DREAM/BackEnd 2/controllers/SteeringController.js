@@ -7,7 +7,11 @@ const getBadFarmers = async (req, res, next) => {
   try {
     let badFarmers;
 
-    badFarmers = await Farmer.getBadFarmers();
+    const steerings = await SteeringInitative.getAllActiveSteering();
+    const farmerIDs = steerings.map((s) => s.farmerID);
+    badFarmers = await Farmer.getBadFarmers(farmerIDs);
+
+    
 
     res.status(200).json({
       badFarmers,

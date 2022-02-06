@@ -74,11 +74,12 @@ const getSteeringInfo = async (req, res, next) => {
   const { initativeID } = req.params;
   try {
     const steeringInfo = await SteeringInitative.getInfo(initativeID);
+    console.log(steeringInfo)
     res.status(200).json({
       steeringInfo,
     });
   } catch (error) {
-    return next(new HttpError("An error occured, try again later", 500));
+    return next(new HttpError(error, 500));
   }
 };
 
@@ -98,7 +99,7 @@ const evaluateSteering = async (req, res, next) => {
     await SteeringInitative.evaluateSteering(initativeID, grade);
     res.status(200).json("Steering correctly evaluated.");
   } catch (error) {
-    return next(new HttpError("Error while evaluating, try again later.", 500));
+    return next(new HttpError(error, 500));
   }
 };
 

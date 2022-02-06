@@ -6,7 +6,6 @@ const ProductionType = require("./ProductionType");
 const Farmer = require("./Farmer");
 const Location = require("./Location");
 const Agronomist = require("./Agronomist");
-const { ForeignKeyConstraintError } = require("sequelize");
 
 const SteeringInitative = db.define(
   "SteeringInitative",
@@ -80,6 +79,24 @@ const SteeringInitative = db.define(
   }
 );
 
+SteeringInitative.getAllActiveSteering = async function (farmerID) {
+  try {
+    const steering = await SteeringInitative.findAll({
+      where: {
+        startingDate: {
+          [Sequelize.Op.gt]: moment().diff(3, "M"),
+        },
+      },
+      attributes: ["farmerID"],
+      group: ["farmerID"],
+      raw: true,
+    });
+    return steering;
+  } catch (error) {
+    throw error;
+  }
+};
+
 SteeringInitative.getActiveSteering = async function (farmerID) {
   try {
     const steering = await SteeringInitative.findAll({
@@ -88,13 +105,13 @@ SteeringInitative.getActiveSteering = async function (farmerID) {
         startingDate: {
           [Sequelize.Op.gt]: moment().diff(3, "M"),
         },
-      }
-    })
-    return steering
+      },
+    });
+    return steering;
   } catch (error) {
-    throw error
+    throw error;
   }
-}
+};
 
 SteeringInitative.createSteering = async function (
   farmerID,
@@ -153,14 +170,31 @@ SteeringInitative.getInfo = async function (initativeID) {
 
 SteeringInitative.evaluateSteering = async function (initativeID, grade) {
   try {
-    await SteeringInitative.update({
-      grade,
-    }, 
-    {
-      where: {
-        initativeID
+    if (grade) {
+      const steering = await SteeringInitative.findOne({
+        where: {
+          initativeID,
+        },
+      });
+      await Farmer.update(
+        {
+          trend: null,
+        },
+        {
+          where: { id: steering.farmerID },
+        }
+      );
+    }
+    await SteeringInitative.update(
+      {
+        grade,
+      },
+      {
+        where: {
+          initativeID,
+        },
       }
-    });
+    );
   } catch (error) {
     throw error;
   }
@@ -171,8 +205,6 @@ Report.belongsTo(SteeringInitative, {
   foreignKey: "initativeID",
 });
 
-
-
 SteeringInitative.belongsTo(Agronomist, {
   as: "agronomist",
   foreignKey: "agronomistID",
@@ -180,6 +212,12 @@ SteeringInitative.belongsTo(Agronomist, {
 Agronomist.hasMany(SteeringInitative, {
   as: "SteeringInitatives",
   foreignKey: "agronomistID",
+});
+
+SteeringInitative.belongsTo(Farmer, { as: "farmer", foreignKey: "farmerID" });
+Farmer.hasMany(SteeringInitative, {
+  as: "SteeringInitatives",
+  foreignKey: "farmerID",
 });
 
 module.exports = SteeringInitative;

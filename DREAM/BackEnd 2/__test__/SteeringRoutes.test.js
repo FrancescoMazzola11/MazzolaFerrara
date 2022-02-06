@@ -3,11 +3,8 @@ const supertest = require("supertest");
 const SteeringInitative = require("../models/SteeringInitative.js");
 const requestWithSupertest = supertest(server);
 
-describe("Steering Endpoints", (done) => {
-  it("GET /getBadFarmers should require authentication", async function () {
-    const res = await requestWithSupertest.get("/steering/getBadFarmers");
-    expect(res.status).toEqual(403);
-  });
+describe("Steering Endpoints", () => {
+ 
 
   it("GET /getBadFarmers should return all the farmers with trend = 0 and no active steering initatives", async () => {
     const response = await requestWithSupertest
@@ -22,11 +19,6 @@ describe("Steering Endpoints", (done) => {
     expect(res.body).toHaveProperty("badFarmers");
   });
 
-  it("GET /getAgronomists should require authentication", async function () {
-    const res = await requestWithSupertest.get("/steering/getAgronomists");
-    expect(res.status).toEqual(403);
-  });
-
   it("GET /getAgronomists should return all the agronomists", async () => {
     const response = await requestWithSupertest
       .post("/login")
@@ -38,18 +30,6 @@ describe("Steering Endpoints", (done) => {
     expect(res.status).toEqual(200);
     expect(res.type).toEqual(expect.stringContaining("json"));
     expect(res.body).toHaveProperty("agronomists");
-  });
-
-  it("GET /createSteering should require authentication", async function () {
-    const farmerID = 3;
-    const agronomistID = 1;
-    const res = await requestWithSupertest
-      .post("/steering/createSteering")
-      .send({
-        farmerID: farmerID,
-        agronomistID: agronomistID,
-      });
-    expect(res.status).toEqual(403);
   });
 
   //farmer non esistente
@@ -120,10 +100,10 @@ describe("Steering Endpoints", (done) => {
       });
     expect(res.status).toEqual(201);
     expect(res.type).toEqual(expect.stringContaining("json"));
-    console.log(res.body)
+    console.log(res.body);
     await SteeringInitative.destroy({
       where: {
-        initativeID : res.body.si.initativeID,
+        initativeID: res.body.si.initativeID,
       },
     });
   });

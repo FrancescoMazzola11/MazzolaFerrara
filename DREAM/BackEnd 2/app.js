@@ -11,7 +11,10 @@ const bodyParser = require('body-parser');
 const HttpError = require('./models/http-error');
 
 const app = express();
-app.listen(5000);
+
+if (process.env.NODE_ENV !== 'test') {
+  app.listen(5000);
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,6 +25,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(bodyParser.json());
+app.use(
+  bodyParser.urlencoded({
+    extended: true,
+  })
+);
 
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -39,12 +48,7 @@ app.use('/login', accountRouter);
 app.use("/evaluate/", evaluateRouter);
 app.use("/steering/", steeringRouter);
 
-app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
+
 
 
 
