@@ -42,7 +42,7 @@ const LoginAdministrator = () => {
           responseData.email,
           responseData.token,
         );
-        navigate("/");
+        navigate("/farmers");
         navigate(0);
       } catch (error) {
         Swal.fire({

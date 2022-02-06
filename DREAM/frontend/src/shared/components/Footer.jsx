@@ -32,7 +32,7 @@ const Footer = () => <React.Fragment> <center style={{marginTop:"30vh"}} >
     </div>
 
     <div className="footer-copyright bg-light text-dark text-center py-3">© 2022 Copyright @
-        <a href="/" className="text-success"> Francesco Mazzola & Alessio Ferrara</a>
+        <a href="/farmers" className="text-success"> Francesco Mazzola & Alessio Ferrara</a>
         <i class="fa fa-android" aria-hidden="true"></i>
     </div>
 
