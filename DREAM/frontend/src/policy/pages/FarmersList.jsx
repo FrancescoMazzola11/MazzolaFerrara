@@ -15,6 +15,7 @@ const FarmerList = () => {
     const token = authService.getCurrentToken();
 
     useEffect(() => {
+      //get all farmers
         const getFarmers = async () => {
           try {
             const response = await sendRequest(
@@ -44,6 +45,7 @@ const FarmerList = () => {
           List of Farmers
         </h2>
         <hr/>
+        {/* use component to display the farmers */}
          {!isLoading && farmers && (
             <ListaFarmer farmers = {farmers}  />
           )}

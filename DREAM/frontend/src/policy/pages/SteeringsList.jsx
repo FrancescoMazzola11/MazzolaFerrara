@@ -15,6 +15,7 @@ const SteeringsList = () => {
     const token = authService.getCurrentToken();
 
     useEffect(() => {
+      //get all the steering initiatives
         const getInitiatives = async () => {
           try {
             const response = await sendRequest(
@@ -44,6 +45,7 @@ const SteeringsList = () => {
           List of Steering Initiatives
         </h2>
         <hr/>
+        {/* use the component to display all the inititatives */}
          {!isLoading && initiatives && (
             <ListaSteerings initiatives = {initiatives}  />
           )}

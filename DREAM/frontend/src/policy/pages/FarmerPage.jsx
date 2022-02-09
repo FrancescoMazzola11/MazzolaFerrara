@@ -40,6 +40,7 @@ const FarmerList = () => {
     lat: 17.669638,
     lng: 78.574823,
   };
+  //evaluate function to evaluate farmer depending on the evaluation grade
   const evaluate = async (grade) => {
     try {
       const response = await sendRequest(

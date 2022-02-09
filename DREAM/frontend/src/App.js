@@ -31,22 +31,19 @@ function App() {
 
   if (user) {
     routes = (
+      // routes for logged user
       <Routes>
         <Route path="/" element={<ListOfFarmers />} />
         <Route path="/farmerpage/:id" element={<FarmerPage />} />
         <Route path="/steeringlist" element={<SteeringList />} />
         <Route path="/badfarmerslist" element={<BadFarmersList />} />
         <Route path="/steeringpage/:id" element={<SteeringPage />} />
-
         <Route path="/demo" element={<Demo />} />
-
-        {/* <Route path="/packagedetails/:pkgID" element={<PackagePage />} />
-          <Route path="/confirmationpage" element={<ConfirmationPage />} />
-          <Route path="/unpaidorders" element={<UnpaidOrders />} /> */}
       </Routes>
     );
   } else {
     routes = (
+      // routes for generic (unlogged) user
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/demo" element={<Demo />} />

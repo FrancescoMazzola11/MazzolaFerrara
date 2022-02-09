@@ -37,6 +37,7 @@ const SteeringPage = () => {
     lng: 78.574823,
   };
   const token = authService.getCurrentToken();
+  //evaluate function for the steering, based on the evaluation grade
   const evaluate = async (grade) => {
     try {
       const response = await sendRequest(
@@ -134,6 +135,7 @@ const SteeringPage = () => {
                 </div>
                 <div className="row mt-3">
                   <div className="col-md-12 text-center mt-3 mb-3">
+                    {/* if the steering was not previously evaluated and the report is available we do display the evaluate button */}
                     {!steering.si.grade && steering.report && (
                       <Button
                         className="mr-3"
@@ -170,6 +172,7 @@ const SteeringPage = () => {
                             </tr>
                           </thead>
                           <tbody>
+                            {/* if we have a report available we display it */}
                             {steering.report &&
                               steering.report.map((r) => (
                                 <tr
@@ -234,6 +237,7 @@ const SteeringPage = () => {
                       </div>
                     </React.Fragment>
                   ) : (
+                    // if we don't have a report available
                     <React.Fragment>
                       <Message color="teal">
                         <Message.Header>No data available</Message.Header>
@@ -251,7 +255,6 @@ const SteeringPage = () => {
           )}
         </div>
       </div>
-      
     </React.Fragment>
   );
 };
