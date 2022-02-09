@@ -1,0 +1,5 @@
+{
+  "heroku-prebuild": "npm install --prefix server && npm install",
+  "heroku-postbuild": "npm run build --prefix server && ng build --prod",
+  "start": "npm start --prefix server"
+}
