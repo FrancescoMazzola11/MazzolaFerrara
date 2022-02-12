@@ -37,6 +37,7 @@ const SteeringPage = () => {
     lng: 78.574823,
   };
   const token = authService.getCurrentToken();
+  //evaluate function for the steering, based on the evaluation grade
   const evaluate = async (grade) => {
     try {
       const response = await sendRequest(
@@ -120,12 +121,6 @@ const SteeringPage = () => {
                     </React.Fragment>
                   )}
                   <br />
-                  {/* <Icon name="numbered list"></Icon>
-                <Label className="mt-2" color="facebook" size="large">
-                  Productions
-                </Label>{" "}
-                production.name }{" "} */}
-                  {/* get list of production types of the farmer */}
                 </div>
                 <div className="col-md-4">
                   <LoadScript googleMapsApiKey="AIzaSyDX_OSdMYc79SeKrOLBh7VqZ5_n-mdexew">
@@ -134,14 +129,14 @@ const SteeringPage = () => {
                       center={center}
                       zoom={9}
                     >
-                      {/* Child components, such as markers, info windows, etc. */}
                       <></>
                     </GoogleMap>
                   </LoadScript>
                 </div>
                 <div className="row mt-3">
                   <div className="col-md-12 text-center mt-3 mb-3">
-                    {!steering.si.grade && (
+                    {/* if the steering was not previously evaluated and the report is available we do display the evaluate button */}
+                    {!steering.si.grade && steering.report && (
                       <Button
                         className="mr-3"
                         color="green"
@@ -177,6 +172,7 @@ const SteeringPage = () => {
                             </tr>
                           </thead>
                           <tbody>
+                            {/* if we have a report available we display it */}
                             {steering.report &&
                               steering.report.map((r) => (
                                 <tr
@@ -241,6 +237,7 @@ const SteeringPage = () => {
                       </div>
                     </React.Fragment>
                   ) : (
+                    // if we don't have a report available
                     <React.Fragment>
                       <Message color="teal">
                         <Message.Header>No data available</Message.Header>
@@ -258,7 +255,6 @@ const SteeringPage = () => {
           )}
         </div>
       </div>
-      
     </React.Fragment>
   );
 };

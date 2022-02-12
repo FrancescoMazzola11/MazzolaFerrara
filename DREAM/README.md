@@ -24,6 +24,14 @@ Download and Install NodeJS runtime from here: [NodeJS Download](https://nodejs.
 
 If any error occurs make sure to have Administration/root Privileges on the Shell (use sudo _command_to_run)
 
+## Declare Ports
+
+In order to let the application work in the frontend directory create a new file ".env" and copy and paste the following text in order to delcare the ports that we are going to use for both backend and frontend:
+REACT_APP_BASE_URL = http://localhost:5000
+REACT_APP_FRONT_URL = http://localhost:3000
+
+run again npm install if an error occurs in order to install dotenv
+
 ## Run the Server
 1. Move inside the DREAM/BackEnd 2 folder
 2. Open a Shell/Command Promt there
@@ -32,4 +40,7 @@ If any error occurs make sure to have Administration/root Privileges on the Shel
 
 ## Enjoy DREAMS
 Now a webpage will pop-up in order to let you use the DREAMS applcation, if the browser does not 
-automatically start you can go to `http://localhost:3000` and use DREAM
+automatically start you can go to `http://localhost:3000` and use DREAM.
+In order to login as a policy maker you can use the following data:
+email: 123@gmail.com
+password: 123

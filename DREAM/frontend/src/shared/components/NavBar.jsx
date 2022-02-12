@@ -47,7 +47,7 @@ const NavBar = () => {
             {/* Home button removed since PM's home is farmers page */}
             {user && (
               <React.Fragment>
-                <Nav.Link href="/farmers">Farmers</Nav.Link>
+                <Nav.Link href="/">Farmers</Nav.Link>
                 <Nav.Link href="/badfarmerslist">Bad Farmers </Nav.Link>
                 <Nav.Link href="/steeringlist">Steering Initiatives </Nav.Link>
               </React.Fragment>

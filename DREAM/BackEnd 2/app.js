@@ -12,7 +12,7 @@ const HttpError = require('./models/http-error');
 
 const app = express();
 
-if (process.env.NODE_ENV !== 'test') {
+if (process.env.NODE_ENV !== 'test' || process.env.PORT) {
   app.listen(5000);
 }
 

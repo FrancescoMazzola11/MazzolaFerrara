@@ -42,7 +42,7 @@ const LoginAdministrator = () => {
           responseData.email,
           responseData.token,
         );
-        navigate("/farmers");
+        navigate("/");
         navigate(0);
       } catch (error) {
         Swal.fire({
@@ -89,9 +89,9 @@ const LoginAdministrator = () => {
                   />
                   <Button
                     type="submit"
-                    color="green"
                     floated="right"
-                    className="rounded-pill" 
+                    className="btn btn-success"
+                    color="green"
                     onClick={loginData.handleSubmit}
                   >
                     <Icon name="sign in" /> LOG-IN

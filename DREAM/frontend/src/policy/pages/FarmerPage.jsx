@@ -8,6 +8,7 @@ import {
   Header,
   TextArea,
   Label,
+  Message,
 } from "semantic-ui-react";
 import { useNavigate } from "react-router";
 
@@ -39,6 +40,7 @@ const FarmerList = () => {
     lat: 17.669638,
     lng: 78.574823,
   };
+  //evaluate function to evaluate farmer depending on the evaluation grade
   const evaluate = async (grade) => {
     try {
       const response = await sendRequest(
@@ -168,6 +170,17 @@ const FarmerList = () => {
                     {!isLoading && farmer.farmerProductions && (
                       <ListaProduction productions={farmer.farmerProductions} />
                     )}
+                    {!isLoading && farmer.farmerProductions.length==0 && (
+                      <React.Fragment>
+                      <Message color="teal">
+                        <Message.Header>No data available</Message.Header>
+                        <p>
+                          It was not possible to retrieve information on the farmer's productions.
+                          (No productions were found in the database)
+                        </p>
+                      </Message>
+                    </React.Fragment>
+)}
                   </div>
                 </div>
               </div>

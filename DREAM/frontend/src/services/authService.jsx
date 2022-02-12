@@ -1,4 +1,5 @@
 class AuthService {
+  // class do manage the login and logout functions, assign token and store session informations
     login(id, email, token) {
       sessionStorage.setItem("id", JSON.stringify(id));
       sessionStorage.setItem("token", JSON.stringify(token));
