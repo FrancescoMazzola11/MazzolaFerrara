@@ -11,26 +11,6 @@ const NavBar = () => {
   const user = authService.getCurrentEmail();
   const navigate = useNavigate();
 
-  // useEffect(() => {
-  //   const getOrdini = async () => {
-  //     if (user) {
-  //       try {
-  //         const response = await sendRequest(
-  //           process.env.REACT_APP_JAVA_BASE_URL +
-  //             "/order/unpaidOrders/" +
-  //             authService.getCurrentId(),
-  //           "GET",
-  //           null
-  //         );
-  //         setnOrdersUnpaid(response.length);
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
-  //   getOrdini();
-  // }, [sendRequest]);
-
   return (
     <Navbar bg="blue" expand="lg">
       <Container>

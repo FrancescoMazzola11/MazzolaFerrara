@@ -54,8 +54,11 @@ const FarmerList = () => {
       );
       Swal.fire({
         icon: "success",
-        title: "Farmer correctly evaluated"
-      }).then(()=>{navigate("/")});    } catch (error) {
+        title: "Farmer correctly evaluated",
+      }).then(() => {
+        navigate("/");
+      });
+    } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Something went wrong...",
@@ -170,17 +173,18 @@ const FarmerList = () => {
                     {!isLoading && farmer.farmerProductions && (
                       <ListaProduction productions={farmer.farmerProductions} />
                     )}
-                    {!isLoading && farmer.farmerProductions.length==0 && (
+                    {!isLoading && farmer.farmerProductions.length == 0 && (
                       <React.Fragment>
-                      <Message color="teal">
-                        <Message.Header>No data available</Message.Header>
-                        <p>
-                          It was not possible to retrieve information on the farmer's productions.
-                          (No productions were found in the database)
-                        </p>
-                      </Message>
-                    </React.Fragment>
-)}
+                        <Message color="teal">
+                          <Message.Header>No data available</Message.Header>
+                          <p>
+                            It was not possible to retrieve information on the
+                            farmer's productions. (No productions were found in
+                            the database)
+                          </p>
+                        </Message>
+                      </React.Fragment>
+                    )}
                   </div>
                 </div>
               </div>
@@ -188,7 +192,6 @@ const FarmerList = () => {
           )}
         </div>
       </div>
-      
     </React.Fragment>
   );
 };
