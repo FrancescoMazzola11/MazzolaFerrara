@@ -96,10 +96,10 @@ const getSteeringInfo = async (req, res, next) => {
 const evaluateFarmer = async (req, res, next) => {
   const { farmerID, grade } = req.body;
 
-  if(grade == 1 || grade == 0) {
+  if (grade == 1 || grade == 0) {
     try {
-      const farmer = await Farmer.findOne({where: {id: farmerID}})
-      if(!farmer) {
+      const farmer = await Farmer.findOne({ where: { id: farmerID } });
+      if (!farmer) {
         return next(new HttpError("No farmer with this id found", 500));
       }
       await Farmer.evaluateFarmer(farmerID, grade);
@@ -108,9 +108,13 @@ const evaluateFarmer = async (req, res, next) => {
       return next(new HttpError(error, 500));
     }
   } else {
-    return next(new HttpError("A farmer can be evaluated only positively o negatively", 500));
+    return next(
+      new HttpError(
+        "A farmer can be evaluated only positively o negatively",
+        500
+      )
+    );
   }
-  
 };
 
 const evaluateSteering = async (req, res, next) => {

@@ -54,8 +54,8 @@ const FarmerList = () => {
       );
       Swal.fire({
         icon: "success",
-        title: "Correctly Evaluated"
-      }).then(()=>{navigate("/farmers")});    } catch (error) {
+        title: "Farmer correctly evaluated"
+      }).then(()=>{navigate("/")});    } catch (error) {
       Swal.fire({
         icon: "error",
         title: "Something went wrong...",
